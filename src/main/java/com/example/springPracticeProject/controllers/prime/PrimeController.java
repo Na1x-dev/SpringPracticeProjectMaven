@@ -29,6 +29,7 @@ public class PrimeController {
         final List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
+        model.addAttribute("messagePageLink", "../messagePage/index/id=$message.id.toString()");
     }
 
     @GetMapping(value = PrimeEndpoints.receivedMessagesPage)
@@ -42,7 +43,7 @@ public class PrimeController {
         addAttributes(model, user);
         return "sendMessages/index";
     }
-
+//^([A-z0-9\._-])*
     @GetMapping(value = PrimeEndpoints.draftMessagesPage)
     public String draftMessages(Model model, Principal user){
         addAttributes(model, user);
@@ -56,8 +57,9 @@ public class PrimeController {
     }
 
     @GetMapping(value = PrimeEndpoints.messagePageEnd)
-    public String messagePage(Model model, Principal user){
+    public String messagePage(Model model, Principal user, @PathVariable(name = "id") Long id){
         addAttributes(model, user);
+        model.addAttribute("currentMessage", messageService.read(id));
         return "messagePage/index";
     }
 
