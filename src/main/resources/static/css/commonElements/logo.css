@@ -1,0 +1,43 @@
+.G_button {
+    font-family: "Montserrat";
+    font-size: 300%;
+    color: black;
+    width: 70px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: lightblue;
+    opacity: 0.4;
+    border-radius: 5px;
+    /*box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);*/
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+#logo-rectangle {
+    width: 140px;
+    display: flex;
+    flex-direction: row;
+    padding-right: 5px;
+    border-radius: 7px;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+#logo{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+}
+
+#logo-text-mail{
+    font-family: "Montserrat";
+    font-size: 300%;
+    color: grey;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+

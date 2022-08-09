@@ -1,0 +1,59 @@
+#messages {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+table{
+    table-layout: fixed;
+    white-space: nowrap;
+    overflow: clip;
+    width: 100%;
+}
+
+th{
+    padding-left: 4px;
+    /*padding-right: 4px;*/
+    padding-bottom: 10px;
+    color: #676767;
+}
+
+td{
+    border-top: grey 1px dashed;
+    height: 1px;
+}
+
+td div{
+    height: 100%;
+}
+
+.to-message-button.end{
+    padding-right: -100px;
+}
+
+.to-message-button{
+
+    display: block; /* Блочная ссылка */
+    /*background: #D71920; !* Красный цвет фона *!*/
+    /*color: #ff1; !* Цвет ссылок *!*/
+    padding: 5px;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #373737;
+
+}
+
+tr:hover .to-message-button{
+    background-color: #daf0f4;
+    /*padding: 10px;*/
+    color: steelblue;
+    border-radius: 5px;
+}

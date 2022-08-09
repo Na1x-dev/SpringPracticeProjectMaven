@@ -1,0 +1,26 @@
+<div id="left-menu" th:fragment="menu">
+    <a href="../receivedMessages/index.html" class="button" id="received-messages-button" th:href="@{../receivedMessages/index}">
+        <div class="button-div">
+            <div class="button-text">Входящие</div>
+            <div id="received-count" th:text="${receivedMessages.size()}">0</div>
+        </div>
+    </a>
+    <a href="../sendMessages/index.html" class="button" id="send-messages-button" th:href="@{../sendMessages/index}">
+        <div class="button-div">
+            <div class="button-text">Отправленные</div>
+            <div id="send-count" th:text="${sendMessages.size()}">0</div>
+        </div>
+    </a>
+    <a href="../draftMessages/index.html" class="button" id="draft-messages-button" th:href="@{../draftMessages/index}">
+        <div class="button-div">
+            <div class="button-text">Черновики</div>
+            <div id="draft-count">0</div>
+        </div>
+    </a>
+    <a href="../favoriteMessages/index.html" class="button" id="favorite-messages-button" th:href="@{../favoriteMessages/index}">
+        <div class="button-div">
+            <div class="button-text">Избранные</div>
+            <div id="favorite-count">0</div>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,18 @@
+#main {
+    display: flex;
+    flex-direction: row;
+    font-family: "Montserrat Light";
+}
+
+/*цвет выбранного раздела в левом меню*/
+
+#received-messages-button{
+    background-color: #daf0f4;
+    /*padding: 10px;*/
+    color: steelblue;
+    border-radius: 5px;
+}
+
+
+
+

@@ -1,0 +1,58 @@
+<div id="messages" th:fragment="list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 5%">#</th>
+            <th style="width: 60%">MessageContent</th>
+            <th class="dropdown" style="width: 10%">SendersMail</th>
+            <th style="width: 15%">readStatus</th>
+            <th style="width: 5%">Edit</th>
+            <th style="width: 5%">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message : ${receivedMessages}">
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}" href="../messagePage/index.html" th:href="@{../messagePage/index}"></a>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
+                       th:href="@{../messagePage/index}"></a>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button" th:text="${message.sendersMail.mailAddress}" href="../messagePage/index.html"
+                       th:href="@{../messagePage/index}">
+                    </a>
+                </div>
+            </td>
+            <td style="text-align: center" href="../messagePage/index.html"
+                th:href="@{../messagePage/index}">
+                <div>
+                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{../messagePage/index}">
+                        readStatus
+                    </a>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{../messagePage/index}">
+                        X
+                    </a>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button end" href="../messagePage/index.html" th:href="@{../messagePage/index}">
+                        D
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

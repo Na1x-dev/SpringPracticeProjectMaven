@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GGMail</title>
+    <link rel="stylesheet" href="../../static/css/commonElements/header.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/header.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/footer.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/footer.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/logo.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/logo.css}">
+    <link rel="stylesheet" href="../../static/css/receivedMessages/main.css" th:rel="stylesheet"
+          th:href="@{/css/receivedMessages/main.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/list.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/list.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/leftMenu.css}">
+
+</head>
+
+<body>
+<header th:replace="commonElements/header :: header"></header>
+<main id="main">
+    <div th:replace="commonElements/leftMenu :: menu"></div>
+    <div th:replace="receivedMessages/list :: list"></div>
+</main>
+<footer th:replace="commonElements/footer :: footer">someFooter</footer>
+</body>
+
+</html>

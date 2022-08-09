@@ -1,0 +1,36 @@
+#left-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 150%;
+    margin-top: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin-left: 20px;
+    align-self: start;
+}
+
+.button {
+    text-decoration: none;
+    color: #373737;
+    padding: 10px;
+}
+
+.button-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button-text {
+    margin-right: 40px;
+}
+
+.button:hover button{
+    background-color: #daf0f4;
+    /*padding: 10px;*/
+    /*color: steelblue;*/
+    color: lightcoral;
+    border-radius: 5px;
+}
+

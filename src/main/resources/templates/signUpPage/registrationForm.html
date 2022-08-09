@@ -1,0 +1,76 @@
+<div class="container" th:fragment="container">
+
+    <form method="POST" class="form-signUp" th:action="@{/signUpPage/index}">
+        <h2 class="form-signUp-heading">Create your account</h2>
+        <div class="inputs">
+            <div class="column" th:object="${userForm}">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username"
+                           autofocus="true" th:field="*{username}">
+                    <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                    <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control"
+                           placeholder="Confirm your password" th:field="*{passwordConfirm}">
+                    <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
+                          th:errors="*{passwordConfirm}"></span>
+                </div>
+            </div>
+            <div class="vertical-separator"></div>
+            <div class="column" th:object="${userForm}">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Firstname"
+                           autofocus="true" th:field="*{firstname}">
+                    <span class="has-error"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Lastname" th:field="*{lastname}">
+                    <span class="has-error"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Age" th:field="*{age}">
+                    <span class="has-error"></span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <button id="signUp-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <div id="or-div">or</div>
+        <h4 class="text-center"><a id="to-logIn-button" th:href="@{../logInPage/index}">Log in your account</a></h4>
+
+
+    </form>
+
+</div>
+
+<!--<form method="POST" class="form-signin" th:object="${userForm}" th:action="@{/registration}">
+    <h2 class="form-signin-heading">Create your account</h2>
+    <div class="form-group">
+      <input type="text" th:field="*{username}" class="form-control" placeholder="Username"
+             autofocus="true">
+      <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </div>
+
+    <div class="form-group">
+      <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+      <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+
+    <div class="form-group">
+      <input type="password" th:field="*{passwordConfirm}" class="form-control"
+             placeholder="Confirm your password">
+      <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+  </form>-->
