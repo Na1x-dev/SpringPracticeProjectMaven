@@ -1,0 +1,5 @@
+<div id="message" th:fragment="message">
+    <div class="username-text" th:text="${currentMessage.sendersMail.mailAddress.split(&quot;@&quot;, 1)[0]}"></div>
+    <div class="message-content-text" th:text="${currentMessage.messageContent}"></div>
+
+</div>

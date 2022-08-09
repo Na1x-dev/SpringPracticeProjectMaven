@@ -14,41 +14,47 @@
         <tr th:each="message : ${sendMessages}">
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${sendMessages.indexOf(message)+1}" href="../messagePage/index.html" th:href="@{(${messagePageLink})}"></a>
+                    <a class="to-message-button" th:text="${sendMessages.indexOf(message)+1}"
+                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}"></a>
                 </div>
             </td>
             <td>
                 <div>
                     <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
-                       th:href="@{(${messagePageLink})}"></a>
+                       th:href="@{'../messagePage/index/id='+${message.id}}"></a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${message.recipientsMail.mailAddress.split(&quot;@&quot;, 1)[0]}" href="../messagePage/index.html"
-                       th:href="@{(${messagePageLink})}">
+                    <a class="to-message-button"
+                       th:text="${message.recipientsMail.mailAddress.split(&quot;@&quot;, 1)[0]}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">
 
                     </a>
                 </div>
             </td>
             <td style="text-align: center" href="../messagePage/index.html"
-                th:href="@{(${messagePageLink})}">
+                th:href="@{'../messagePage/index/id='+${message.id}}">
                 <div>
-                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{(${messagePageLink})}">
+                    <a class="to-message-button" href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">
                         readStatus
                     </a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{(${messagePageLink})}">
+                    <a class="to-message-button" href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">
                         X
                     </a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button end" href="../messagePage/index.html" th:href="@{(${messagePageLink})}">
+                    <a class="to-message-button end" href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">
                         D
                     </a>
                 </div>

@@ -26,11 +26,56 @@
     margin-right: 40px;
 }
 
-.button:hover button{
+.button:hover{
     background-color: #daf0f4;
     /*padding: 10px;*/
-    /*color: steelblue;*/
-    color: lightcoral;
+    color: steelblue;
+    /*color: lightcoral;*/
     border-radius: 5px;
 }
 
+#new-message-button{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+    font-size: 150%;
+}
+
+#new-message-link{
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #373737;
+}
+
+#new-message-text-container{
+    position: relative;
+    top: 32%;
+}
+
+#new-message-link:hover{
+    background-color: #daf0f4;
+    color: steelblue;
+    border-radius: 15px;
+}
+
+#new-message-link-off{
+    color: steelblue;
+    /*background-color: #f1f1f1;*/
+    border-radius: 15px;
+}
+
+/*сделать нажатую кнопку*/
+#new-message-button-off{
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+    font-size: 150%;
+}

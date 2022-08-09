@@ -21,7 +21,12 @@
 <body>
 <header th:replace="commonElements/header :: header"></header>
 <main id="main">
-    <div th:replace="commonElements/leftMenu :: menu"></div>
+    <div>
+        <div th:replace="commonElements/leftMenu :: menu"></div>
+        <div id="new-message-button"><a id="new-message-link" th:href="@{../../../newMessagePage/index}">
+            <div id="new-message-text-container">Новое сообщение</div>
+        </a></div>
+    </div>
     <div th:replace="favoriteMessages/list :: list"></div>
 </main>
 <footer th:replace="commonElements/footer :: footer">someFooter</footer>

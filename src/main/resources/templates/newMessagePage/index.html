@@ -10,12 +10,12 @@
           th:href="@{/css/commonElements/footer.css}">
     <link rel="stylesheet" href="../../static/css/commonElements/logo.css" th:rel="stylesheet"
           th:href="@{/css/commonElements/logo.css}">
-    <link rel="stylesheet" href="../../static/css/favoriteMessages/main.css" th:rel="stylesheet"
-          th:href="@{/css/favoriteMessages/main.css}">
+    <link rel="stylesheet" href="../../static/css/messagePage/main.css" th:rel="stylesheet"
+          th:href="@{/css/messagePage/main.css}">
     <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
           th:href="@{/css/commonElements/leftMenu.css}">
-    <link rel="stylesheet" href="../../static/css/commonElements/list.css" th:rel="stylesheet"
-          th:href="@{/css/commonElements/list.css}">
+    <link rel="stylesheet" href="../../static/css/messagePage/message.css" th:rel="stylesheet"
+          th:href="@{/css/messagePage/message.css}">
 </head>
 
 <body>
@@ -23,11 +23,11 @@
 <main id="main">
     <div>
         <div th:replace="commonElements/leftMenu :: menu"></div>
-        <div id="new-message-button"><a id="new-message-link" th:href="@{../../../newMessagePage/index}">
+        <div id="new-message-button-off"><a id="new-message-link-off">
             <div id="new-message-text-container">Новое сообщение</div>
         </a></div>
     </div>
-    <div th:replace="favoriteMessages/list :: list"></div>
+<!--    <div th:replace="messagePage/message :: message"></div>-->
 </main>
 <footer th:replace="commonElements/footer :: footer">someFooter</footer>
 </body>

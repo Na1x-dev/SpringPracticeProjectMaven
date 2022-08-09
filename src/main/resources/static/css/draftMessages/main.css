@@ -7,10 +7,12 @@
 /*цвет выбранного раздела в левом меню*/
 
 #draft-messages-button{
-    background-color: #daf0f4;
+    /*background-color: #daf0f4;*/
     /*padding: 10px;*/
     color: steelblue;
     border-radius: 5px;
+    /*color: lightcoral;*/
+    background-color: #f1f1f1;
 }
 
 

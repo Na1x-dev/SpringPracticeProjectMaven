@@ -9,4 +9,5 @@ public class PrimeEndpoints {
     static final String sendMessagesPage = "/sendMessages/index";
     static final String logInEndpoint = "/signUpPage/index";
     static final String defaultEndpoint = "/";
+    static final String newMessagePageEnd = "newMessagePage/index";
 }

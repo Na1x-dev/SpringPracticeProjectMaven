@@ -43,7 +43,7 @@ public class PrimeController {
         addAttributes(model, user);
         return "sendMessages/index";
     }
-//^([A-z0-9\._-])*
+
     @GetMapping(value = PrimeEndpoints.draftMessagesPage)
     public String draftMessages(Model model, Principal user){
         addAttributes(model, user);
@@ -61,6 +61,12 @@ public class PrimeController {
         addAttributes(model, user);
         model.addAttribute("currentMessage", messageService.read(id));
         return "messagePage/index";
+    }
+
+    @GetMapping(value = PrimeEndpoints.newMessagePageEnd)
+    public String newMessagePage(Model model, Principal user){
+        addAttributes(model, user);
+        return "newMessagePage/index";
     }
 
 
