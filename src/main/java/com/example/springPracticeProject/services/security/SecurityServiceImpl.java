@@ -1,6 +1,5 @@
 package com.example.springPracticeProject.services.security;
 
-import com.example.springPracticeProject.models.User;
 import com.example.springPracticeProject.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -31,7 +30,7 @@ public class SecurityServiceImpl implements SecurityService{
     }
 
     @Override
-    public Long autoLogin(String username, String password) {
+    public void autoLogin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
@@ -40,7 +39,6 @@ public class SecurityServiceImpl implements SecurityService{
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
-        return userService.findByUsername(username).getMail().getId();
     }
     
 }

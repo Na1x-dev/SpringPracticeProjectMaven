@@ -57,7 +57,6 @@ public class UserController {
         userMail.setMailAddress(userForm.getUsername() + "@ggmail.com");
         mailService.create(userMail);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
         return "redirect:/receivedMessages/index";
     }
 
