@@ -1,0 +1,12 @@
+<div id="new-message" th:fragment="new-message">
+    <form class="form-new-message" method="POST" th:action="@{/newMessagePage/index}">
+        <div class="form-group" th:object="${newMessage}">
+            <input name="recipient" type="text" class="form-control" placeholder="Recipient"
+                   autofocus="true" th:field="${recipientsMail.mailAddress}"/>
+            <input name="content" type="text" class="form-control" placeholder="Your message" th:field="*{messageContent}"/>
+
+            <button id="send-message-button" type="submit">Send message</button>
+        </div>
+    </form>
+
+</div>

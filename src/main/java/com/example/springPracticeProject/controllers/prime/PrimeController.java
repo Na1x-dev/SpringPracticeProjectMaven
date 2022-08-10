@@ -1,8 +1,10 @@
 package com.example.springPracticeProject.controllers.prime;
 
 import com.example.springPracticeProject.controllers.user.UserEndpoints;
+import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.models.User;
+import com.example.springPracticeProject.services.mail.MailService;
 import com.example.springPracticeProject.services.message.MessageService;
 
 import com.example.springPracticeProject.services.security.SecurityService;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -20,7 +23,8 @@ import java.util.List;
 public class PrimeController {
     @Autowired
     private MessageService messageService;
-
+    @Autowired
+    private MailService mailService;
     @Autowired
     private UserService userService;
 
@@ -63,12 +67,31 @@ public class PrimeController {
         return "messagePage/index";
     }
 
-    @GetMapping(value = PrimeEndpoints.newMessagePageEnd)
-    public String newMessagePage(Model model, Principal user){
+//    @GetMapping(value = PrimeEndpoints.newMessagePageEnd)
+//    public String newMessagePage(Model model, Principal user){
+//        addAttributes(model, user);
+//        return "newMessagePage/index";
+//    }
+
+    @GetMapping("/newMessagePage/index")
+    public String newMessagePage(Model model, Principal user) {
         addAttributes(model, user);
+        Message message = new Message();
+        Mail recipientsMail = new Mail();
+        model.addAttribute("newMessage", message);
+        model.addAttribute("recipientsMail", recipientsMail);
         return "newMessagePage/index";
     }
 
+    @PostMapping("/newMessagePage/index")
+    public String newMessagePage(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user) {
+        recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
+        Mail sendersMail = userService.getUserMail(user.getName());
+        message.setRecipientsMail(recipientsMail);
+        message.setSendersMail(sendersMail);
+        messageService.create(message);
+        return "redirect:/receivedMessages/index";
+    }
 
 //    @GetMapping(value = PrimeEndpoints.receivedMessagesPage)
 //    public String receivedMessages(Model model){

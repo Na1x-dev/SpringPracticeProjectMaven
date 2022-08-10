@@ -46,4 +46,9 @@ public class MailServiceImpl implements MailService {
         }
         return false;
     }
+
+    @Override
+    public Mail getMailByMailAddress(String mailAddress) {
+        return mailRepository.findByMailAddress(mailAddress);
+    }
 }

@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
     public Long getUserMailId(String username){
         return mailRepository.findByUserId(userRepository.getIdByUsername(username).getId()).getId();
     }
+
+    @Override
+    public Mail getUserMail(String username) {
+        return mailRepository.findByUserId(userRepository.getIdByUsername(username).getId());
+    }
 }

@@ -7,4 +7,6 @@ public interface MailJpaRepository extends JpaRepository<Mail, Long> {
 
     Mail getById(Long id);
     Mail findByUserId(Long userId);
+
+    Mail findByMailAddress(String mailAddress);
 }

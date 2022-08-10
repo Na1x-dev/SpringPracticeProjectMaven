@@ -12,4 +12,6 @@ public interface UserService {
     User findByUsername(String username);
 
     Long getUserMailId(String username);
+
+    Mail getUserMail(String username);
 }

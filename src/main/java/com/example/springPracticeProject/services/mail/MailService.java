@@ -14,5 +14,5 @@ public interface MailService {
 
     boolean delete(Long id);
 
-
+    Mail getMailByMailAddress(String mailAddress);
 }
