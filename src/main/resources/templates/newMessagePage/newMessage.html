@@ -1,12 +1,32 @@
 <div id="new-message" th:fragment="new-message">
+
     <form class="form-new-message" method="POST" th:action="@{/newMessagePage/index}">
         <div class="form-group" th:object="${newMessage}">
             <input name="recipient" type="text" class="form-control" placeholder="Recipient"
                    autofocus="true" th:field="${recipientsMail.mailAddress}"/>
-            <input name="content" type="text" class="form-control" placeholder="Your message" th:field="*{messageContent}"/>
-
-            <button id="send-message-button" type="submit">Send message</button>
+            <input name="theme" type="text" class="form-control" placeholder="Message theme"
+                   autofocus="true" th:field="*{messageTheme}"/>
+            <!--            <div id="message-content-input-div">-->
+            <textarea rows="6" onkeyup="textarea_resize(event, 15,6);" id="message-content-input" name="content"
+                      type="text" class="form-control" placeholder="Your message"
+                      th:field="*{messageContent}"></textarea>
+            <!--            </div>-->
+            <button class="some-new-message-button" type="submit">Send message</button>
+            <button class="some-new-message-button">To Drafts</button>
         </div>
     </form>
-
+    <script>
+        function textarea_resize(event, line_height, min_line_count) {
+            var min_line_height = min_line_count * line_height;
+            var obj = event.target;
+            var div = document.getElementById(obj.id + '-div');
+            div.innerHTML = obj.value;
+            var obj_height = div.offsetHeight;
+            if (event.keyCode == 13)
+                obj_height += line_height;
+            else if (obj_height < min_line_height)
+                obj_height = min_line_height;
+            obj.style.height = obj_height + 'px';
+        }
+    </script>
 </div>

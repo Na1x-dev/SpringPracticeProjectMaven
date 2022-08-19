@@ -1,7 +1,7 @@
 #main {
     display: flex;
     flex-direction: row;
-    font-family: "Montserrat Light";
+    font-family: "Montserrat Light", serif;
 }
 
 /*цвет выбранного раздела в левом меню*/

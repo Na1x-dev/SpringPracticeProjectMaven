@@ -20,12 +20,6 @@ public class MailController {
         this.mailService = mailService;
     }
 
-//    @PostMapping(value = MailEndpoints.mailEndpoint)
-//    public ResponseEntity<?> create(@RequestBody Mail mail){
-//        mailService.create(mail);
-//        return new ResponseEntity<>(mail, HttpStatus.CREATED);
-//    }
-
     @GetMapping(value = MailEndpoints.mailEndpoint)
     public String list(Model model){
         final List<Mail> mails = mailService.readAll();

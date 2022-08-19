@@ -1,6 +1,8 @@
 package com.example.springPracticeProject.controllers.user;
 
+import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.User;
+import com.example.springPracticeProject.services.mail.MailService;
 import com.example.springPracticeProject.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,9 @@ import org.springframework.validation.Validator;
 public class UserValidator implements Validator {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MailService mailService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -38,5 +43,6 @@ public class UserValidator implements Validator {
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
+
     }
 }

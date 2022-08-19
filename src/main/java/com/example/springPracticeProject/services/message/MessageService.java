@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface MessageService {
 
-    void create(Message message);
+    void create(Message message, Mail sendersMail, Mail recipientsMail);
 
-    List<Message> readSendMessages(Long mailId);
+    List<Object> readSendMessages(Long mailId);
 
-    List<Message> readReceivedMessages(Long mailId);
+    List<Object> readReceivedMessages(Long mailId);
     Message read(Long id);
 
     boolean update(Message message, Long id);

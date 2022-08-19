@@ -1,9 +1,11 @@
 package com.example.springPracticeProject.services.message;
 
+import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.repositories.message.MessageJpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,7 +18,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void create(Message message) {
+    public void create(Message message, Mail sendersMail, Mail recipientsMail) {
+        message.setRecipientsMail(recipientsMail);
+        message.setSendersMail(sendersMail);
+        message.setReadStatus(false);
+        message.setMessageDate(new Date());
+        message.setResponseMessage(null);
         messageRepository.save(message);
     }
 
@@ -30,6 +37,7 @@ public class MessageServiceImpl implements MessageService {
     public boolean update(Message message, Long id) {
         if (messageRepository.existsById(id)) {
             message.setId(id);
+            message.setReadStatus(true);
             messageRepository.save(message);
             return true;
         }
@@ -46,12 +54,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> readReceivedMessages(Long mailId) {
+    public List<Object> readReceivedMessages(Long mailId) {
         return messageRepository.findByRecipientsMailId(mailId);
     }
 
     @Override
-    public List<Message> readSendMessages(Long mailId) {
+    public List<Object> readSendMessages(Long mailId) {
         return messageRepository.findBySendersMailId(mailId);
     }
 }

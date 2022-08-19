@@ -3,54 +3,43 @@
         <thead>
         <tr>
             <th style="width: 5%">#</th>
-            <th style="width: 60%">MessageContent</th>
-            <th class="dropdown" style="width: 10%">SendersMail</th>
-            <th style="width: 15%">readStatus</th>
-            <th style="width: 5%">Edit</th>
-            <th style="width: 5%">Delete</th>
+            <th style="width: 15%">Recipient</th>
+            <th style="width: 20%">MessageTheme</th>
+            <th style="width: 40%">MessageContent</th>
+            <th style="width: 10%">ReadStatus</th>
+            <th style="width: 10%">Date</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="message : ${messages}">
+        <tr>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${message.id}" href="../messagePage/index.html" th:href="@{../messagePage/index}"></a>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
-                       th:href="@{../messagePage/index}"></a>
+                    <a class="to-message-button" href="../messagePage/index.html">1</a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${message.sendersMail.mailAddress}" href="../messagePage/index.html"
-                       th:href="@{../messagePage/index}">
-
-                    </a>
-                </div>
-            </td>
-            <td style="text-align: center" href="../messagePage/index.html"
-                th:href="@{../messagePage/index}">
-                <div>
-                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{../messagePage/index}">
-                        readStatus
-                    </a>
+                    <a class="to-message-button" href="../messagePage/index.html">username</a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" href="../messagePage/index.html" th:href="@{../messagePage/index}">
-                        X
-                    </a>
+                    <a class="to-message-button" href="../messagePage/index.html">messageTheme</a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button end" href="../messagePage/index.html" th:href="@{../messagePage/index}">
-                        D
-                    </a>
+                    <a class="to-message-button" href="../messagePage/index.html">messageContent</a>
+                </div>
+            </td>
+            <td style="text-align: center" href="../messagePage/index.html">
+                <div>
+                    <a class="to-message-button" href="../messagePage/index.html">readStatus</a>
+                </div>
+            </td>
+            <td style="text-align: center" href="../messagePage/index.html">
+                <div>
+                    <a class="to-message-button-end" href="../messagePage/index.html">date</a>
                 </div>
             </td>
         </tr>

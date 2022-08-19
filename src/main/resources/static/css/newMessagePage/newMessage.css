@@ -1,0 +1,60 @@
+#new-message {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    flex-grow: 1;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 130%;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-control{
+    font-family: inherit; /* 1 */
+    font-size: inherit; /* 1 */
+    line-height: inherit; /* 1 */
+    margin: 7px; /* 2 */
+    /*border-radius: 5px;*/
+    /*border: 0 #373737;*/
+    border-top: 0;
+    border-right: 0;
+    border-left:0;
+    border-bottom: #676767 1px solid;
+    overflow: hidden;
+    resize: none;
+}
+
+.form-control:focus {
+    outline: none;
+
+
+    /*width: 100%;*/
+}
+#message-content-input-div{
+    /*white-space: pre-wrap;*/
+    /*word-wrap: break-word;*/
+    /*visibility: hidden;*/
+    /*position: absolute;*/
+    /*position: absolute;*/
+}
+
+.some-new-message-button{
+    width: 300px;
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: 30px;
+    padding: 8px;
+    border: 0;
+    font-family: "Montserrat", serif;
+    color: black;
+    background-color: lightblue;
+    opacity: 0.4;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}

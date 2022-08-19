@@ -14,8 +14,10 @@
           th:href="@{/css/messagePage/main.css}">
     <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
           th:href="@{/css/commonElements/leftMenu.css}">
-    <link rel="stylesheet" href="../../static/css/messagePage/message.css" th:rel="stylesheet"
-          th:href="@{/css/messagePage/message.css}">
+    <link rel="stylesheet" href="../../static/css/newMessagePage/newMessage.css" th:rel="stylesheet"
+          th:href="@{/css/newMessagePage/newMessage.css}">
+<!--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>-->
+
 </head>
 
 <body>
@@ -28,6 +30,7 @@
         </a></div>
     </div>
     <div th:replace="newMessagePage/newMessage :: new-message"></div>
+
 </main>
 <footer th:replace="commonElements/footer :: footer">someFooter</footer>
 </body>

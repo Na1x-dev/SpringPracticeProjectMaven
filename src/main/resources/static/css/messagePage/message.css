@@ -8,3 +8,18 @@
     padding: 20px;
     font-size: 150%;
 }
+
+.some-message-button{
+    width: 300px;
+    font-size: inherit;
+    line-height: inherit;
+    margin-top: 30px;
+    padding: 8px;
+    border: 0;
+    font-family: "Montserrat", serif;
+    color: black;
+    background-color: lightblue;
+    opacity: 0.4;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}

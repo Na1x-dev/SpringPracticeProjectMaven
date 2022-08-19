@@ -1,6 +1,6 @@
 package com.example.springPracticeProject.controllers.user;
 
-import com.example.springPracticeProject.controllers.prime.PrimeEndpoints;
+import com.example.springPracticeProject.controllers.mail.MailValidator;
 import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.models.User;
@@ -32,6 +32,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
     @Autowired
+    private MailValidator mailValidator;
+
+    @Autowired
     private MessageService messageService;
 
     @GetMapping("/signUpPage/index")
@@ -49,12 +52,13 @@ public class UserController {
     @PostMapping("/signUpPage/index")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, @ModelAttribute("userMail") Mail userMail) {
         userValidator.validate(userForm, bindingResult);
+        mailValidator.validate(userMail, bindingResult);
         if (bindingResult.hasErrors()) {
             return "signUpPage/index";
         }
         userService.create(userForm);
         userMail.setUser(userForm);
-        userMail.setMailAddress(userForm.getUsername() + "@ggmail.com");
+        userMail.setMailAddress(userForm.getUsername().toLowerCase() + "@ggm.com");
         mailService.create(userMail);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/receivedMessages/index";

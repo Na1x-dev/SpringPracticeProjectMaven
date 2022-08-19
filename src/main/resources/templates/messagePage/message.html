@@ -1,5 +1,26 @@
 <div id="message" th:fragment="message">
-    <div class="username-text" th:text="${currentMessage.sendersMail.mailAddress.split(&quot;@&quot;, 1)[0]}"></div>
-    <div class="message-content-text" th:text="${currentMessage.messageContent}"></div>
+    <h2 class="message-theme-div" th:text="${currentMessage.messageTheme}">currentMessage.messageTheme</h2>
+    <div>
+        <div>
+            <div>
+                <h5 class="username-div" th:text="'От кого: '+${currentMessage.sendersMail.user.username}">username
+                </h5>
+                <div class="senders-mail-address-div"
+                     th:text="${currentMessage.sendersMail.mailAddress}">sendersMail.mailAddress
+                </div>
+            </div>
+            <div>
+                <h5 class="username-div" th:text="'Кому: '+${currentMessage.recipientsMail.user.username}">username
+                </h5>
+                <div class="recipients-mail-address" th:text="${currentMessage.recipientsMail.mailAddress}">
+                    recipientsMail.mailAddress
+                </div>
+            </div>
+        </div>
+        <h6 class="message-date-div" th:text="${currentMessage.messageDate}">messageDate</h6>
+    </div>
+    <div class="message-content-text-div" th:text="${currentMessage.messageContent}">messageContent</div>
+    <button class="some-message-button">Reply to message</button>
+    <button class="some-message-button">To favorites</button>
 
 </div>

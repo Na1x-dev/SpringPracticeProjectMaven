@@ -1,13 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GGMail</title>
+    <link rel="stylesheet" href="../../static/css/commonElements/header.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/header.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/footer.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/footer.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/logo.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/logo.css}">
+    <link rel="stylesheet" href="../../static/css/receivedMessages/main.css" th:rel="stylesheet"
+          th:href="@{/css/receivedMessages/main.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/list.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/list.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/leftMenu.css}">
+    <script type="text/javascript" src="../../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+</head>
+
+<body>
 <div id="messages" th:fragment="list">
     <table class="table">
         <thead>
         <tr>
             <th style="width: 5%">#</th>
-            <th style="width: 60%">MessageContent</th>
-            <th class="dropdown" style="width: 10%">SendersMail</th>
-            <th style="width: 15%">readStatus</th>
-            <th style="width: 5%">Edit</th>
-            <th style="width: 5%">Delete</th>
+            <th style="width: 15%">Sender</th>
+            <th style="width: 20%">MessageTheme</th>
+            <th style="width: 40%">MessageContent</th>
+            <th style="width: 10%">ReadStatus</th>
+            <th style="width: 10%">Date</th>
         </tr>
         </thead>
         <tbody>
@@ -15,45 +37,45 @@
             <td style="text-align: center">
                 <div>
                     <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}"
-                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}"></a>
+                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}">1
+                    </a>
                 </div>
             </td>
-            <td>
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button" th:text="${message.sendersMail.user.username}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">username
+                    </a>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <a class="to-message-button" th:text="${message.messageTheme}" href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">messageTheme
+                    </a>
+                </div>
+            </td>
+            <td style="text-align: center">
                 <div>
                     <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
-                       th:href="@{'../messagePage/index/id='+${message.id}}"></a>
+                       th:href="@{'../messagePage/index/id='+${message.id}}">messageContent
+                    </a>
                 </div>
             </td>
-            <td style="text-align: center">
+            <td style="text-align: center" href="../messagePage/index.html">
                 <div>
-                    <a class="to-message-button" th:text="${message.sendersMail.mailAddress.split(&quot;@&quot;, 1)[0]}"
+                    <a class="to-message-button" th:text="${message.returnStringReadStatus()}"
                        href="../messagePage/index.html"
-                       th:href="@{'../messagePage/index/id='+${message.id}}">
+                       th:href="@{'../messagePage/index/id='+${message.id}}">readStatus
                     </a>
                 </div>
             </td>
-            <td style="text-align: center" href="../messagePage/index.html"
-                th:href="@{'../messagePage/index/id='+${message.id}}">
+            <td style="text-align: center" href="../messagePage/index.html">
                 <div>
-                    <a class="to-message-button" href="../messagePage/index.html"
-                       th:href="@{'../messagePage/index/id='+${message.id}}">
-                        readStatus
-                    </a>
-                </div>
-            </td>
-            <td style="text-align: center">
-                <div>
-                    <a class="to-message-button" href="../messagePage/index.html"
-                       th:href="@{'../messagePage/index/id='+${message.id}}">
-                        X
-                    </a>
-                </div>
-            </td>
-            <td style="text-align: center">
-                <div>
-                    <a class="to-message-button end" href="../messagePage/index.html"
-                       th:href="@{'../messagePage/index/id='+${message.id}}">
-                        D
+                    <a class="to-message-button-end" th:text="${message.returnDateOfMessage()}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">date
                     </a>
                 </div>
             </td>
@@ -61,3 +83,5 @@
         </tbody>
     </table>
 </div>
+</body>
+</html>
