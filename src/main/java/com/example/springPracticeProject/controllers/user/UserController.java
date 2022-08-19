@@ -2,7 +2,6 @@ package com.example.springPracticeProject.controllers.user;
 
 import com.example.springPracticeProject.controllers.mail.MailValidator;
 import com.example.springPracticeProject.models.Mail;
-import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.models.User;
 import com.example.springPracticeProject.services.mail.MailService;
 import com.example.springPracticeProject.services.message.MessageService;
@@ -10,16 +9,11 @@ import com.example.springPracticeProject.services.security.SecurityService;
 import com.example.springPracticeProject.services.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class UserController {
