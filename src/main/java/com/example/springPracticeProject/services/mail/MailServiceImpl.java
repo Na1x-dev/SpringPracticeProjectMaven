@@ -49,6 +49,6 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public Mail getMailByMailAddress(String mailAddress) {
-        return mailRepository.findByMailAddress(mailAddress);
+        return mailRepository.findTopByMailAddress(mailAddress);
     }
 }
