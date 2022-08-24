@@ -75,7 +75,6 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(Model model, String error, String logout) {
-        securityService.autoLogin("", "");
         return "logInPage/index";
     }
     @GetMapping({"/"})
