@@ -80,3 +80,32 @@
     border-radius: 15px;
     font-size: 150%;
 }
+
+#logout-button{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+    font-size: 130%;
+}
+
+#logout-link{
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #373737;
+}
+
+#logout-text-container{
+    position: relative;
+    top: 22%;
+}
+
+#logout-link:hover{
+    background-color: #daf0f4;
+    color: steelblue;
+    border-radius: 15px;
+}

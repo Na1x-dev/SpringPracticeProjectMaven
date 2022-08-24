@@ -93,6 +93,12 @@ public class MessageController {
     public String newMessagePage(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user) {
         recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
         Mail sendersMail = userService.getUserMail(user.getName());
+        if(message.getMessageContent().isEmpty() || message.getMessageContent().matches("^ *$")){
+            message.setMessageContent("void message");
+        }
+        if(message.getMessageTheme().isEmpty() || message.getMessageTheme().matches("^ *$")){
+            message.setMessageTheme("void message theme");
+        }
         messageService.create(message, sendersMail, recipientsMail);
         return "redirect:/receivedMessages/index";
     }

@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 //
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -50,11 +51,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long getUserMailId(String username){
-        return mailRepository.findByUserId(userRepository.getIdByUsername(username).getId()).getId();
+        return mailRepository.findByUserId(userRepository.findIdByUsername(username).getId()).getId();
     }
 
     @Override
     public Mail getUserMail(String username) {
-        return mailRepository.findByUserId(userRepository.getIdByUsername(username).getId());
+        return mailRepository.findByUserId(userRepository.findIdByUsername(username).getId());
+    }
+
+    @Override
+    public Date getBirthDateByUsername(String username) {
+        return userRepository.findBirthDateByUsername(username);
     }
 }

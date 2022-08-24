@@ -16,6 +16,8 @@
           th:href="@{/css/commonElements/list.css}">
     <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
           th:href="@{/css/commonElements/leftMenu.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+    <link rel="bookmark" th:href="@{/favicon.ico}"/>
     <script type="text/javascript" src="../../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
 </head>
 
@@ -25,9 +27,16 @@
 
     <div>
         <div th:replace="commonElements/leftMenu :: menu"></div>
-        <div id="new-message-button"><a id="new-message-link" th:href="@{../../../newMessagePage/index}">
-            <div id="new-message-text-container">Новое сообщение</div>
-        </a></div>
+        <div id="new-message-button">
+            <a id="new-message-link" th:href="@{../../../newMessagePage/index}">
+                <div id="new-message-text-container">Новое сообщение</div>
+            </a>
+        </div>
+        <div id="logout-button">
+            <a id="logout-link" th:href="@{../../../logout}">
+                <div id="logout-text-container">Выйти</div>
+            </a>
+        </div>
     </div>
     <div th:replace="receivedMessages/list :: list" id="messages" th:id="messages">
         <script>
@@ -47,70 +56,70 @@
             });
         </script>
     </div>
-<!--    <div id="messages" th:fragment="list">-->
-<!--       -->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th style="width: 5%">#</th>-->
-<!--                <th style="width: 60%">MessageContent</th>-->
-<!--                <th class="dropdown" style="width: 10%">SendersMail</th>-->
-<!--                <th style="width: 15%">readStatus</th>-->
-<!--                <th style="width: 5%">Edit</th>-->
-<!--                <th style="width: 5%">Delete</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="message : ${receivedMessages}">-->
-<!--                <td style="text-align: center">-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}"-->
-<!--                           href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}"></a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"-->
-<!--                           th:href="@{'../messagePage/index/id='+${message.id}}"></a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td style="text-align: center">-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button" th:text="${message.sendersMail.mailAddress.split(&quot;@&quot;, 1)[0]}"-->
-<!--                           href="../messagePage/index.html"-->
-<!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td style="text-align: center" href="../messagePage/index.html"-->
-<!--                    th:href="@{'../messagePage/index/id='+${message.id}}">-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button" href="../messagePage/index.html"-->
-<!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
-<!--                            readStatus-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td style="text-align: center">-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button" href="../messagePage/index.html"-->
-<!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
-<!--                            X-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td style="text-align: center">-->
-<!--                    <div>-->
-<!--                        <a class="to-message-button end" href="../messagePage/index.html"-->
-<!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
-<!--                            D-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
+    <!--    <div id="messages" th:fragment="list">-->
+    <!--       -->
+    <!--        <table class="table">-->
+    <!--            <thead>-->
+    <!--            <tr>-->
+    <!--                <th style="width: 5%">#</th>-->
+    <!--                <th style="width: 60%">MessageContent</th>-->
+    <!--                <th class="dropdown" style="width: 10%">SendersMail</th>-->
+    <!--                <th style="width: 15%">readStatus</th>-->
+    <!--                <th style="width: 5%">Edit</th>-->
+    <!--                <th style="width: 5%">Delete</th>-->
+    <!--            </tr>-->
+    <!--            </thead>-->
+    <!--            <tbody>-->
+    <!--            <tr th:each="message : ${receivedMessages}">-->
+    <!--                <td style="text-align: center">-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}"-->
+    <!--                           href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}"></a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--                <td>-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"-->
+    <!--                           th:href="@{'../messagePage/index/id='+${message.id}}"></a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--                <td style="text-align: center">-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button" th:text="${message.sendersMail.mailAddress.split(&quot;@&quot;, 1)[0]}"-->
+    <!--                           href="../messagePage/index.html"-->
+    <!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--                <td style="text-align: center" href="../messagePage/index.html"-->
+    <!--                    th:href="@{'../messagePage/index/id='+${message.id}}">-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button" href="../messagePage/index.html"-->
+    <!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
+    <!--                            readStatus-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--                <td style="text-align: center">-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button" href="../messagePage/index.html"-->
+    <!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
+    <!--                            X-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--                <td style="text-align: center">-->
+    <!--                    <div>-->
+    <!--                        <a class="to-message-button end" href="../messagePage/index.html"-->
+    <!--                           th:href="@{'../messagePage/index/id='+${message.id}}">-->
+    <!--                            D-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </td>-->
+    <!--            </tr>-->
+    <!--            </tbody>-->
+    <!--        </table>-->
+    <!--    </div>-->
 </main>
 <footer th:replace="commonElements/footer :: footer">someFooter</footer>
 </body>

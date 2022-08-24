@@ -3,6 +3,7 @@ package com.example.springPracticeProject.services.user;
 import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.User;
 //
+import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -14,4 +15,6 @@ public interface UserService {
     Long getUserMailId(String username);
 
     Mail getUserMail(String username);
+
+    Date getBirthDateByUsername(String username);
 }

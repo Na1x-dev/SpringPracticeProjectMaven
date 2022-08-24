@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @Controller
 public class UserController {
     @Autowired
@@ -45,6 +47,7 @@ public class UserController {
 
     @PostMapping("/signUpPage/index")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, @ModelAttribute("userMail") Mail userMail) {
+        System.out.println(userForm);
         userValidator.validate(userForm, bindingResult);
         mailValidator.validate(userMail, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -65,13 +68,16 @@ public class UserController {
         }
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
-
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
-
         return "logInPage/index";
     }
 
+    @GetMapping("/logout")
+    public String logout(Model model, String error, String logout) {
+        securityService.autoLogin("", "");
+        return "logInPage/index";
+    }
     @GetMapping({"/"})
     public String startPage(Model model) {
         return "redirect:receivedMessages/index";

@@ -26,6 +26,11 @@
         <div id="new-message-button"><a id="new-message-link" th:href="@{../../../newMessagePage/index}">
             <div id="new-message-text-container">Новое сообщение</div>
         </a></div>
+        <div id="logout-button">
+            <a id="logout-link"  th:href="@{../../../logout}">
+                <div id="logout-text-container">Выйти</div>
+            </a>
+        </div>
     </div>
     <div th:replace="sendMessages/list :: list"></div>
 </main>

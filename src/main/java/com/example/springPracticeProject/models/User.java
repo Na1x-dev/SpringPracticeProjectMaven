@@ -2,11 +2,12 @@ package com.example.springPracticeProject.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @JsonIdentityInfo(
@@ -28,9 +29,9 @@ public class User {
 
     @Column(name = "lastname")
     @NonNull String lastname;
-
-    @Column(name = "age")
-    @NonNull Integer age;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "birth_date")
+    @NonNull Date birthDate;
 
     @Column(name = "username")
     @NonNull String username;
@@ -38,7 +39,7 @@ public class User {
     @Column(name = "password")
     @NonNull String password;
 
-//    @JsonManagedReference
+    //    @JsonManagedReference
     @OneToOne(mappedBy = "user")
     @NonNull Mail mail;
     @ManyToMany
@@ -47,6 +48,11 @@ public class User {
     @Transient
     @NonNull String passwordConfirm;
 
-
+    Integer getAge(){
+        Date currentDate = new Date();
+        long liveTime = currentDate.getTime()- birthDate.getTime();
+        double age = (double) liveTime/ 31556952000L;
+        return (int) age;
+    }
 }
 
