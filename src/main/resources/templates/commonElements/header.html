@@ -1,3 +1,38 @@
+<!--<header id="header" th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--    <div th:replace="commonElements/logo :: logo">someLogo</div>-->
+<!--</header>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GGMail</title>
+    <link rel="stylesheet" href="../../static/css/commonElements/header.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/header.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/footer.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/footer.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/logo.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/logo.css}">
+    <link rel="stylesheet" href="../../static/css/signUpPage/main.css" th:rel="stylesheet"
+          th:href="@{/css/signUpPage/main.css}">
+</head>
+
+<body>
 <header id="header" th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div th:replace="commonElements/logo :: logo">someLogo</div>
+    <div th:replace="commonElements/logo :: logo">
+        <div id="logo" th:fragment="logo">
+            <a href="#" class="logo-link" th:href="@{../../../receivedMessages/index}">
+                <div id="logo-rectangle">
+                    <div class="G_button">G</div>
+                    <div class="G_button">G</div>
+                </div>
+            </a>
+            <a href="#" class="logo-link" th:href="@{../../../receivedMessages/index}">
+                <div id="logo-text-mail">Mail</div>
+            </a>
+        </div>
+    </div>
 </header>
+</body>
+</html>

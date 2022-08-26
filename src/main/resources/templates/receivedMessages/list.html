@@ -25,11 +25,11 @@
         <thead>
         <tr>
             <th style="width: 5%">#</th>
-            <th style="width: 15%">Sender</th>
+            <th style="width: 20%">Sender</th>
             <th style="width: 20%">MessageTheme</th>
-            <th style="width: 40%">MessageContent</th>
-            <th style="width: 10%">ReadStatus</th>
-            <th style="width: 10%">Date</th>
+            <th style="width: 25%">MessageContent</th>
+            <th style="width: 15%">ReadStatus</th>
+            <th style="width: 15%">Date</th>
         </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
                     </a>
                 </div>
             </td>
-            <td style="text-align: center">
+            <td style="text-align: start">
                 <div>
                     <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">messageContent

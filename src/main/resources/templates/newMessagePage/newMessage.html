@@ -1,15 +1,22 @@
 <div id="new-message" th:fragment="new-message">
 
-    <form class="form-new-message" method="POST" th:action="@{/newMessagePage/index}">
+    <form class="form-new-message" method="POST" th:action="@{'/newMessagePage/index/id='+${previousMessageId}}">
         <div class="form-group" th:object="${newMessage}">
+
+
             <input name="recipient" type="text" class="form-control" placeholder="Recipient"
-                   autofocus="true" th:field="${recipientsMail.mailAddress}"/>
+                   autofocus="true" th:field="${recipientsMail.mailAddress}" th:if="${previousMessageId==0}"/>
+            <div id="recipient" class="form-control" th:text="${responseMessageMailAddress}"
+                 th:if="${previousMessageId!=0}"></div>
+
+            <!--            th:text="${responseMessageTheme}"-->
             <input name="theme" type="text" class="form-control" placeholder="Message theme"
-                   autofocus="true" th:field="*{messageTheme}"/>
-            <!--            <div id="message-content-input-div">-->
+                   autofocus="true" th:field="*{messageTheme}" th:if="${previousMessageId==0}"/>
+            <div id="theme" class="form-control" th:if="${previousMessageId!=0}" th:text="${responseMessageTheme}">
+            </div>
             <textarea rows="6" onkeyup="textarea_resize(event, 15,6);" id="message-content-input" name="content"
                       type="text" class="form-control" placeholder="Your message"
-                      th:field="*{messageContent}"></textarea>
+                      th:field="*{messageContent}" autofocus="true"></textarea>
             <!--            </div>-->
             <button class="some-new-message-button" type="submit">Send message</button>
             <button class="some-new-message-button">To Drafts</button>

@@ -18,4 +18,7 @@ public interface MessageService {
 
     boolean delete(Long id);
 
+    List<Message> readMessagesOnTheSameTheme(Long id);
+
+
 }

@@ -1,12 +1,10 @@
 #messages {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
     border-radius: 15px;
     padding: 20px;
     font-size: 110%;
     text-align: center;
+    margin: 20px;
 }
 
 table{

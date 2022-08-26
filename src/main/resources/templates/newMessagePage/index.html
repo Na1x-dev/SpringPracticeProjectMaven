@@ -25,14 +25,7 @@
 <main id="main">
     <div>
         <div th:replace="commonElements/leftMenu :: menu"></div>
-        <div id="new-message-button-off"><a id="new-message-link-off">
-            <div id="new-message-text-container">Новое сообщение</div>
-        </a></div>
-        <div id="logout-button">
-            <a id="logout-link"  th:href="@{../../../logout}">
-                <div id="logout-text-container">Выйти</div>
-            </a>
-        </div>
+        <div th:replace="commonElements/someLeftButtons :: #some-left-buttons"></div>
     </div>
     <div th:replace="newMessagePage/newMessage :: new-message"></div>
 

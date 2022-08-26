@@ -20,7 +20,10 @@
         <h6 class="message-date-div" th:text="${currentMessage.messageDate}">messageDate</h6>
     </div>
     <div class="message-content-text-div" th:text="${currentMessage.messageContent}">messageContent</div>
-    <button class="some-message-button">Reply to message</button>
-    <button class="some-message-button">To favorites</button>
-
+    <div class="message-bottom-bar">
+        <a class="some-message-button" th:href="'@{../../../../newMessagePage/index/id='+${currentMessage.id}">Reply to
+            message</a>
+<!--        th:unless="${showReplyButton}"-->
+        <a class="some-message-button">To favorites</a>
+    </div>
 </div>

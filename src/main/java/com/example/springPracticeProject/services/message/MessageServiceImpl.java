@@ -5,6 +5,7 @@ import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.repositories.message.MessageJpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MessageServiceImpl implements MessageService {
         message.setSendersMail(sendersMail);
         message.setReadStatus(false);
         message.setMessageDate(new Date());
-        message.setResponseMessage(null);
+//        message.setResponseMessage(null);
         messageRepository.save(message);
     }
 
@@ -51,6 +52,18 @@ public class MessageServiceImpl implements MessageService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Message> readMessagesOnTheSameTheme(Long id) {
+        List<Message> messages = new ArrayList<>();
+        messages.add(messageRepository.getById(id));
+        while(messages.get(messages.size()-1).getResponseMessage()!=null){
+            messages.add(messages.get(messages.size()-1).getResponseMessage());
+//            System.out.println(messages.get(messages.size()-1));
+        }
+
+        return messages;
     }
 
     @Override

@@ -13,7 +13,7 @@
     width: 300px;
     font-size: inherit;
     line-height: inherit;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     padding: 8px;
     border: 0;
     font-family: "Montserrat", serif;
@@ -22,4 +22,11 @@
     opacity: 0.4;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.message-bottom-bar{
+    margin-top: 30px;
+    margin-bottom: 10px;
 }

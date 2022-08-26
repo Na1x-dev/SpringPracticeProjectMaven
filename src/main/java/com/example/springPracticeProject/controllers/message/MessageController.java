@@ -74,32 +74,69 @@ public class MessageController {
         addAttributes(model, user);
         Message currentMessage = messageService.read(id);
         model.addAttribute("currentMessage", currentMessage);
+        model.addAttribute("showReplyButton", user.getName().equals(currentMessage.getSendersMail().getUser().getUsername()));
         if (!currentMessage.isReadStatus() && user.getName().equals(currentMessage.getRecipientsMail().getUser().getUsername()))
             messageService.update(currentMessage, currentMessage.getId());
+//        System.out.println(messageService.read(currentMessage.getId()))
+        messageService.readMessagesOnTheSameTheme(currentMessage.getId());
         return "messagePage/index";
     }
 
-    @GetMapping("/newMessagePage/index")
-    public String newMessagePage(Model model, Principal user) {
+//    @PostMapping("/newMessagePage/index")
+//    public String newMessagePage(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user) {
+//        recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
+//        Mail sendersMail = userService.getUserMail(user.getName());
+//        if(message.getMessageContent().isEmpty() || message.getMessageContent().matches("^ *$")){
+//            message.setMessageContent("void message");
+//        }
+//        if(message.getMessageTheme().isEmpty() || message.getMessageTheme().matches("^ *$")){
+//            message.setMessageTheme("void message theme");
+//        }
+//
+//        messageService.create(message, sendersMail, recipientsMail);
+//        return "redirect:/receivedMessages/index";
+//    }
+
+    @GetMapping("/newMessagePage/index/id={response_message_id}")
+    public String newMessagePageReply(Model model, Principal user, @PathVariable("response_message_id") Long previousMessageId) {
         addAttributes(model, user);
         Message message = new Message();
         Mail recipientsMail = new Mail();
+
+        if (previousMessageId != 0) {
+            Message previousMessage = messageService.read(previousMessageId);
+            model.addAttribute("responseMessageMailAddress", previousMessage.getSendersMail().getMailAddress());
+            model.addAttribute("responseMessageTheme", previousMessage.getMessageTheme());
+        }
+        model.addAttribute("previousMessageId", previousMessageId);
         model.addAttribute("newMessage", message);
         model.addAttribute("recipientsMail", recipientsMail);
+//        System.out.println(messageService.readMessagesOnTheSameTheme(message.getId()));
+
         return "newMessagePage/index";
     }
 
-    @PostMapping("/newMessagePage/index")
-    public String newMessagePage(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user) {
+    @PostMapping("/newMessagePage/index/id={response_message_id}")
+    public String newMessagePageReply(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user, @PathVariable("response_message_id") Long previousMessageId) {
+        if (previousMessageId != 0) {
+            Message previousMessage = messageService.read(previousMessageId);
+            message.setResponseMessage(previousMessage);
+            message.setMessageTheme(previousMessage.getMessageTheme());
+            recipientsMail.setMailAddress(previousMessage.getSendersMail().getMailAddress());
+            System.out.println(recipientsMail.getMailAddress());
+        }
         recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
+
         Mail sendersMail = userService.getUserMail(user.getName());
-        if(message.getMessageContent().isEmpty() || message.getMessageContent().matches("^ *$")){
+        if (message.getMessageContent().isEmpty() || message.getMessageContent().matches("^ *$")) {
             message.setMessageContent("void message");
         }
-        if(message.getMessageTheme().isEmpty() || message.getMessageTheme().matches("^ *$")){
+        if (message.getMessageTheme().isEmpty() || message.getMessageTheme().matches("^ *$")) {
             message.setMessageTheme("void message theme");
         }
+
         messageService.create(message, sendersMail, recipientsMail);
+
         return "redirect:/receivedMessages/index";
     }
 

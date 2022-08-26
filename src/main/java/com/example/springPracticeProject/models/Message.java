@@ -2,16 +2,20 @@ package com.example.springPracticeProject.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 @Entity
 @Table(name = "messages")
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Message {
@@ -52,6 +56,10 @@ public class Message {
 //    @NonNull
     Message responseMessage;
 
+//    @Column(name="response_message_id")
+//    Long responseMessageId;
+
+
     public String returnDateOfMessage() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM");
         String strDate = dateFormat.format(messageDate);
@@ -70,5 +78,32 @@ public class Message {
 
     public String returnStringReadStatus() {
         return readStatus ? "Прочитано" : "Не прочитано";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Message message = (Message) o;
+        return id != null && Objects.equals(id, message.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", sendersMail=" + sendersMail.getMailAddress() +
+                ", recipientsMail=" + recipientsMail.getMailAddress() +
+                ", messageTheme='" + messageTheme + '\'' +
+                ", messageContent='" + messageContent + '\'' +
+                ", readStatus=" + readStatus +
+                ", messageDate=" + messageDate +
+                ", responseMessage=" + responseMessage +
+                '}';
     }
 }

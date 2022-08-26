@@ -1,7 +1,27 @@
 #header{
-    padding: 10px;
+    justify-content: normal;
+    padding: 20px;
     margin-bottom: 20px;
-    background-color: aqua;
+    background-color: white;
     position: sticky;
-    top: 8px;
+    top: 0px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+
 }
+
+body{
+    margin: 0;
+    justify-content: start;
+    /*padding: 10px;*/
+}
+
+/*#messages {*/
+/*    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);*/
+/*    margin-left: 20px;*/
+/*    margin-top: 20px;*/
+/*    margin-right: 20px;*/
+/*    border-radius: 15px;*/
+/*    padding: 20px;*/
+/*    font-size: 110%;*/
+/*    text-align: center;*/
+/*}*/
