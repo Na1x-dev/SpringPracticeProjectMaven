@@ -62,8 +62,12 @@ public class Message {
 
     public String returnDateOfMessage() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM");
-        String strDate = dateFormat.format(messageDate);
         Date today = new Date();
+        if(messageDate.getYear() != today.getYear()){
+            dateFormat = new SimpleDateFormat("d MMMM yyyy");
+        }
+        String strDate = dateFormat.format(messageDate);
+
         Calendar calendar = new GregorianCalendar();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         Date yesterday = calendar.getTime();
@@ -74,6 +78,11 @@ public class Message {
             strDate = "Вчера";
         }
         return strDate;
+    }
+
+    public String returnTimeOfMessage(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        return dateFormat.format(messageDate);
     }
 
     public String returnStringReadStatus() {

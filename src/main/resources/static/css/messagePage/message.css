@@ -1,15 +1,13 @@
 #message {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    margin-left: 20px;
     flex-grow: 1;
-    margin-top: 20px;
-    margin-right: 20px;
     border-radius: 15px;
     padding: 20px;
     font-size: 150%;
+    margin: 20px;
 }
 
-.some-message-button{
+.some-message-button {
     width: 300px;
     font-size: inherit;
     line-height: inherit;
@@ -26,7 +24,49 @@
     text-decoration: none;
 }
 
-.message-bottom-bar{
+.message-bottom-bar {
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.message-theme-div {
+    margin-left: 30px;
+}
+
+.senders-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.senders-info-and-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+.recipients-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 15px;
+    margin-left: 30px;
+}
+
+.mail-address-div {
+    font-size: 80%;
+}
+
+.username-div {
+    font-size: 90%;
+    font-weight: bold;
+}
+
+.message-content-text-div {
+    margin-left: 30px;
+    margin-top: 20px;
 }

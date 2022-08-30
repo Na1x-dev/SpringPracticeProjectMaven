@@ -67,12 +67,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Object> readReceivedMessages(Long mailId) {
+    public List<Message> readReceivedMessages(Long mailId) {
         return messageRepository.findByRecipientsMailId(mailId);
     }
 
     @Override
-    public List<Object> readSendMessages(Long mailId) {
+    public List<Message> readSendMessages(Long mailId) {
         return messageRepository.findBySendersMailId(mailId);
     }
 }

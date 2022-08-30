@@ -27,17 +27,18 @@ public class MessageController {
     @Autowired
     private UserService userService;
 
-    public void reverseList(List<Object> someList) {
+    public List<Message> reverseList(List<Message> someList) {
         for (int i = 0; i < someList.size(); i++) {
-            Object someObject = someList.get(someList.size() - 1);
+            Message someMessage = someList.get(someList.size() - 1);
             someList.remove(someList.get(someList.size() - 1));
-            someList.add(i, someObject);
+            someList.add(i, someMessage);
         }
+        return someList;
     }
 
     private void addAttributes(Model model, Principal user) {
-        final List<Object> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
-        final List<Object> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
+        final List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
+        final List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
         reverseList(sendMessages);
         reverseList(receivedMessages);
         model.addAttribute("receivedMessages", receivedMessages);
@@ -75,10 +76,9 @@ public class MessageController {
         Message currentMessage = messageService.read(id);
         model.addAttribute("currentMessage", currentMessage);
         model.addAttribute("showReplyButton", user.getName().equals(currentMessage.getSendersMail().getUser().getUsername()));
+        model.addAttribute("sameThemeMessages", reverseList(messageService.readMessagesOnTheSameTheme(id)));
         if (!currentMessage.isReadStatus() && user.getName().equals(currentMessage.getRecipientsMail().getUser().getUsername()))
             messageService.update(currentMessage, currentMessage.getId());
-//        System.out.println(messageService.read(currentMessage.getId()))
-        messageService.readMessagesOnTheSameTheme(currentMessage.getId());
         return "messagePage/index";
     }
 
@@ -123,7 +123,7 @@ public class MessageController {
             message.setResponseMessage(previousMessage);
             message.setMessageTheme(previousMessage.getMessageTheme());
             recipientsMail.setMailAddress(previousMessage.getSendersMail().getMailAddress());
-            System.out.println(recipientsMail.getMailAddress());
+//            System.out.println(recipientsMail.getMailAddress());
         }
         recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
 

@@ -55,7 +55,7 @@ th{
 }
 
 tr:hover .to-message-button{
-    background-color: #daf0f4;
+    background-color: #daf0f4; !important;
     color: steelblue;
     border-radius: 5px;
 }
@@ -76,7 +76,7 @@ tr:hover .to-message-button{
 
 
 tr:hover .to-message-button-end{
-    background-color: #daf0f4;
+    background-color: #daf0f4; !important;
     color: steelblue;
     border-radius: 5px;
 }

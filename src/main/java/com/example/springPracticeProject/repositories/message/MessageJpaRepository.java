@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MessageJpaRepository extends JpaRepository<Message, Long> {
-    List<Object> findByRecipientsMailId(Long mailId);
-    List<Object> findBySendersMailId(Long mailId);
+    List<Message> findByRecipientsMailId(Long mailId);
+    List<Message> findBySendersMailId(Long mailId);
 
     Message getById(Long id);
 }
