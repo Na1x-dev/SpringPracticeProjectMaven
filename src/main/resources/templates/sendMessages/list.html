@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="message : ${sendMessages}">
+        <tr th:each="message : ${sendMessages}" class="table-row">
             <td style="text-align: center">
                 <div>
                     <a class="to-message-button" th:text="${sendMessages.indexOf(message)+1}"

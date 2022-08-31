@@ -38,8 +38,7 @@ th{
     text-overflow: ellipsis;
 }
 
-.to-message-button{
-
+.to-message-button, .to-message-button-not-read{
     display: block;
     margin-top: 4px;
     margin-bottom: 2px;
@@ -54,13 +53,25 @@ th{
     color: #373737;
 }
 
-tr:hover .to-message-button{
-    background-color: #daf0f4; !important;
+.to-message-button-not-read, .to-message-button-end-not-read{
+    background-color: #f1f1f1;
+}
+
+/*tr:hover .to-message-button{*/
+/*    background-color: #daf0f4;*/
+/*    color: steelblue;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+.table-row:hover .to-message-button, .table-row:hover .to-message-button-end{
+    background-color: #daf0f4;
     color: steelblue;
     border-radius: 5px;
 }
 
-.to-message-button-end{
+
+
+.to-message-button-end, .to-message-button-end-not-read{
     display: block; /* Блочная ссылка */
     margin-top: 4px;
     margin-bottom: 2px;
@@ -74,9 +85,8 @@ tr:hover .to-message-button{
     color: #373737;
 }
 
-
-tr:hover .to-message-button-end{
-    background-color: #daf0f4; !important;
-    color: steelblue;
+.table-row:hover .to-message-button-not-read, .table-row:hover .to-message-button-end-not-read{
+    background-color: #d1e6ea;
+    color: #326081;
     border-radius: 5px;
 }

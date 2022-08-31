@@ -33,17 +33,24 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="message : ${receivedMessages}">
+        <tr th:each="message : ${receivedMessages}" class="table-row">
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}"
+                    <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}" th:if="${message.readStatus}"
+                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}">1
+                    </a>
+                    <a class="to-message-button-not-read" th:text="${receivedMessages.indexOf(message)+1}" th:unless="${message.readStatus}"
                        href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}">1
                     </a>
                 </div>
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${message.sendersMail.user.username}"
+                    <a class="to-message-button" th:text="${message.sendersMail.user.username}" th:if="${message.readStatus}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">username
+                    </a>
+                    <a class="to-message-button-not-read" th:text="${message.sendersMail.user.username}" th:unless="${message.readStatus}"
                        href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">username
                     </a>
@@ -51,21 +58,31 @@
             </td>
             <td style="text-align: center">
                 <div>
-                    <a class="to-message-button" th:text="${message.messageTheme}" href="../messagePage/index.html"
+                    <a class="to-message-button" th:text="${message.messageTheme}" href="../messagePage/index.html" th:if="${message.readStatus}"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">messageTheme
+                    </a>
+                    <a class="to-message-button-not-read" th:text="${message.messageTheme}" href="../messagePage/index.html" th:unless="${message.readStatus}"
                        th:href="@{'../messagePage/index/id='+${message.id}}">messageTheme
                     </a>
                 </div>
             </td>
             <td style="text-align: start">
                 <div>
-                    <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html"
+                    <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html" th:if="${message.readStatus}"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">messageContent
+                    </a>
+                    <a class="to-message-button-not-read" th:text="${message.messageContent}" href="../messagePage/index.html"  th:unless="${message.readStatus}"
                        th:href="@{'../messagePage/index/id='+${message.id}}">messageContent
                     </a>
                 </div>
             </td>
             <td style="text-align: center" href="../messagePage/index.html">
                 <div>
-                    <a class="to-message-button" th:text="${message.returnStringReadStatus()}"
+                    <a class="to-message-button" th:text="${message.returnStringReadStatus()}" th:if="${message.readStatus}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">readStatus
+                    </a>
+                    <a class="to-message-button-not-read" th:text="${message.returnStringReadStatus()}" th:unless="${message.readStatus}"
                        href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">readStatus
                     </a>
@@ -73,7 +90,11 @@
             </td>
             <td style="text-align: center" href="../messagePage/index.html">
                 <div>
-                    <a class="to-message-button-end" th:text="${message.returnDateOfMessage()}"
+                    <a class="to-message-button-end" th:text="${message.returnDateOfMessage()}" th:if="${message.readStatus}"
+                       href="../messagePage/index.html"
+                       th:href="@{'../messagePage/index/id='+${message.id}}">date
+                    </a>
+                    <a class="to-message-button-end-not-read" th:text="${message.returnDateOfMessage()}" th:unless="${message.readStatus}"
                        href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">date
                     </a>
