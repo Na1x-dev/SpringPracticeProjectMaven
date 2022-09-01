@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class MessageController {
@@ -28,6 +25,9 @@ public class MessageController {
     private UserService userService;
 
     public List<Message> reverseList(List<Message> someList) {
+        if (someList == null) {
+            someList = new ArrayList<>();
+        }
         for (int i = 0; i < someList.size(); i++) {
             Message someMessage = someList.get(someList.size() - 1);
             someList.remove(someList.get(someList.size() - 1));
@@ -36,11 +36,21 @@ public class MessageController {
         return someList;
     }
 
+    public List<Message> optimizeList(List<Message> someList) {
+        List<Message> optimizedList = new ArrayList<>();
+        for (Message message : someList) {
+            if (message.getNextMessage() == null) {
+                optimizedList.add(message);
+            }
+        }
+        return optimizedList;
+    }
+
     private void addAttributes(Model model, Principal user) {
-        final List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
-        final List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
-        reverseList(sendMessages);
-        reverseList(receivedMessages);
+        List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
+        List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
+        receivedMessages = optimizeList(reverseList(receivedMessages));
+        sendMessages = optimizeList(reverseList(sendMessages));
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
         model.addAttribute("messagePageLink", "../messagePage/index/id=$message.id.toString()");
@@ -97,45 +107,48 @@ public class MessageController {
 //        return "redirect:/receivedMessages/index";
 //    }
 
-    @GetMapping("/newMessagePage/index/id={response_message_id}")
-    public String newMessagePageReply(Model model, Principal user, @PathVariable("response_message_id") Long previousMessageId) {
+    @GetMapping("/newMessagePage/index/id={previous_message_id}")
+    public String newMessagePageReply(Model model, Principal user, @PathVariable("previous_message_id") Long previousMessageId) {
         addAttributes(model, user);
-        Message message = new Message();
+        Message currentMessage = new Message();
         Mail recipientsMail = new Mail();
 
         if (previousMessageId != 0) {
             Message previousMessage = messageService.read(previousMessageId);
-            model.addAttribute("responseMessageMailAddress", previousMessage.getSendersMail().getMailAddress());
-            model.addAttribute("responseMessageTheme", previousMessage.getMessageTheme());
+            model.addAttribute("currentMessageMailAddress", previousMessage.getSendersMail().getMailAddress());
+            model.addAttribute("currentMessageTheme", previousMessage.getMessageTheme()); //для вывода на фронт
         }
         model.addAttribute("previousMessageId", previousMessageId);
-        model.addAttribute("newMessage", message);
+        model.addAttribute("currentMessage", currentMessage);
         model.addAttribute("recipientsMail", recipientsMail);
 //        System.out.println(messageService.readMessagesOnTheSameTheme(message.getId()));
 
         return "newMessagePage/index";
     }
 
-    @PostMapping("/newMessagePage/index/id={response_message_id}")
-    public String newMessagePageReply(@ModelAttribute("newMessage") Message message, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user, @PathVariable("response_message_id") Long previousMessageId) {
+    @PostMapping("/newMessagePage/index/id={previous_message_id}")
+    public String newMessagePageReply(@ModelAttribute("currentMessage") Message currentMessage, @ModelAttribute("recipientsMail") Mail recipientsMail, Principal user, @PathVariable("previous_message_id") Long previousMessageId) {
+        Message previousMessage = null;
         if (previousMessageId != 0) {
-            Message previousMessage = messageService.read(previousMessageId);
-            message.setResponseMessage(previousMessage);
-            message.setMessageTheme(previousMessage.getMessageTheme());
+            previousMessage = messageService.read(previousMessageId);
+            currentMessage.setPreviousMessage(previousMessage);
+            currentMessage.setMessageTheme(previousMessage.getMessageTheme()); //для базы данных
             recipientsMail.setMailAddress(previousMessage.getSendersMail().getMailAddress());
-//            System.out.println(recipientsMail.getMailAddress());
+            previousMessage.setNextMessage(currentMessage);
         }
         recipientsMail = mailService.getMailByMailAddress(recipientsMail.getMailAddress());
 
         Mail sendersMail = userService.getUserMail(user.getName());
-        if (message.getMessageContent().isEmpty() || message.getMessageContent().matches("^ *$")) {
-            message.setMessageContent("void message");
+        if (currentMessage.getMessageContent().isEmpty() || currentMessage.getMessageContent().matches("^ *$")) {
+            currentMessage.setMessageContent("void message");
         }
-        if (message.getMessageTheme().isEmpty() || message.getMessageTheme().matches("^ *$")) {
-            message.setMessageTheme("void message theme");
+        if (currentMessage.getMessageTheme().isEmpty() || currentMessage.getMessageTheme().matches("^ *$")) {
+            currentMessage.setMessageTheme("void message theme");
         }
 
-        messageService.create(message, sendersMail, recipientsMail);
+        messageService.create(currentMessage, sendersMail, recipientsMail);
+        if (previousMessage != null)
+            messageService.update(previousMessage, previousMessageId);
 
         return "redirect:/receivedMessages/index";
     }

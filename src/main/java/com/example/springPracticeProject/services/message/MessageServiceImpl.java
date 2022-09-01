@@ -58,8 +58,8 @@ public class MessageServiceImpl implements MessageService {
     public List<Message> readMessagesOnTheSameTheme(Long id) {
         List<Message> messages = new ArrayList<>();
         messages.add(messageRepository.getById(id));
-        while(messages.get(messages.size()-1).getResponseMessage()!=null){
-            messages.add(messages.get(messages.size()-1).getResponseMessage());
+        while (messages.get(messages.size() - 1).getPreviousMessage() != null) {
+            messages.add(messages.get(messages.size() - 1).getPreviousMessage());
 //            System.out.println(messages.get(messages.size()-1));
         }
 
@@ -68,11 +68,19 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<Message> readReceivedMessages(Long mailId) {
-        return messageRepository.findByRecipientsMailId(mailId);
+        List<Message> someMessages = messageRepository.findByRecipientsMailId(mailId);
+        if(someMessages==null){
+            someMessages = new ArrayList<>();
+        }
+        return someMessages;
     }
 
     @Override
     public List<Message> readSendMessages(Long mailId) {
-        return messageRepository.findBySendersMailId(mailId);
+        List<Message> someMessages = messageRepository.findBySendersMailId(mailId);
+        if (someMessages == null) {
+            someMessages = new ArrayList<>();
+        }
+        return someMessages;
     }
 }

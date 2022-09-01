@@ -12,7 +12,9 @@
                              th:text="'. — '+${message.sendersMail.mailAddress}">sendersMail.mailAddress
                         </div>
                     </div>
-                    <div class="message-date-div" th:text="${message.returnTimeOfMessage()}+', '+${message.returnDateOfMessage()}">messageDate</div>
+                    <div class="message-date-div"
+                         th:text="${message.returnTimeOfMessage()}+', '+${message.returnDateOfMessage()}">messageDate
+                    </div>
                 </div>
                 <div class="recipients-info">
                     <div class="username-div" th:text="'Кому: '+${message.recipientsMail.user.username}">username
@@ -28,10 +30,10 @@
 
     </div>
     <div class="message-bottom-bar">
-        <a class="some-message-button" th:href="'@{../../../../newMessagePage/index/id='+${currentMessage.id}">Reply
+        <a th:unless="${showReplyButton}"
+           class="some-message-button" th:href="'@{../../../../newMessagePage/index/id='+${currentMessage.id}">Reply
             to
             message</a>
-        <!--        th:unless="${showReplyButton}"-->
         <a class="some-message-button">To favorites</a>
     </div>
 

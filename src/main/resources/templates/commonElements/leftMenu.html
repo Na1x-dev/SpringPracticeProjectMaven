@@ -16,6 +16,7 @@
     <a href="../receivedMessages/index.html" class="button" id="received-messages-button" th:href="@{../../../receivedMessages/index}">
         <div class="button-div">
             <div class="button-text">Входящие</div>
+<!--             th:text="#{leftMenu.incoming}"-->
             <div id="received-count" th:text="${receivedMessages.size()}">0</div>
         </div>
     </a>

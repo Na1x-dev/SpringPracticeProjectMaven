@@ -52,9 +52,13 @@ public class Message {
     Date messageDate;
 
     @OneToOne
-    @JoinColumn(name = "response_message_id", referencedColumnName = "id")
-//    @NonNull
-    Message responseMessage;
+    @JoinColumn(name = "next_message_id", referencedColumnName = "id")
+    Message nextMessage;
+
+    @OneToOne
+    @JoinColumn(name="previous_message_id", referencedColumnName = "id")
+    Message previousMessage;
+
 
 //    @Column(name="response_message_id")
 //    Long responseMessageId;
@@ -106,13 +110,7 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", sendersMail=" + sendersMail.getMailAddress() +
-                ", recipientsMail=" + recipientsMail.getMailAddress() +
-                ", messageTheme='" + messageTheme + '\'' +
                 ", messageContent='" + messageContent + '\'' +
-                ", readStatus=" + readStatus +
-                ", messageDate=" + messageDate +
-                ", responseMessage=" + responseMessage +
                 '}';
     }
 }
