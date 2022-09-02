@@ -2,6 +2,7 @@ package com.example.springPracticeProject.controllers.message;
 
 import com.example.springPracticeProject.models.Mail;
 import com.example.springPracticeProject.models.Message;
+import com.example.springPracticeProject.models.User;
 import com.example.springPracticeProject.services.mail.MailService;
 import com.example.springPracticeProject.services.message.MessageService;
 
@@ -17,6 +18,7 @@ import java.util.*;
 
 @Controller
 public class MessageController {
+    User infoAboutUser;
     @Autowired
     private MessageService messageService;
     @Autowired
@@ -47,13 +49,22 @@ public class MessageController {
     }
 
     private void addAttributes(Model model, Principal user) {
+        if (infoAboutUser == null)
+            infoAboutUser = userService.findByUsername(user.getName());
         List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
         List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
         receivedMessages = optimizeList(reverseList(receivedMessages));
         sendMessages = optimizeList(reverseList(sendMessages));
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
+        model.addAttribute("infoAboutUser", infoAboutUser);
         model.addAttribute("messagePageLink", "../messagePage/index/id=$message.id.toString()");
+    }
+
+    @GetMapping(value = "profilePage/index")
+    public String profilePage(Model model, Principal user) {
+        addAttributes(model, user);
+        return "profilePage/index";
     }
 
     @GetMapping(value = MessageEndpoints.receivedMessagesPage)

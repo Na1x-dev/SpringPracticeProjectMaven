@@ -27,7 +27,7 @@
     margin-right: 40px;
 }
 
-.button:hover{
+.button:hover {
     background-color: #daf0f4;
     /*padding: 10px;*/
     color: steelblue;
@@ -35,7 +35,7 @@
     border-radius: 5px;
 }
 
-#new-message-button{
+#new-message-button {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     height: 100px;
@@ -45,7 +45,7 @@
     font-size: 130%;
 }
 
-#new-message-link{
+#new-message-link {
     text-decoration: none;
     display: block;
     width: 100%;
@@ -53,25 +53,25 @@
     color: #373737;
 }
 
-#new-message-text-container{
+#new-message-text-container {
     position: relative;
     top: 32%;
 }
 
-#new-message-link:hover{
+#new-message-link:hover {
     background-color: #daf0f4;
     color: steelblue;
     border-radius: 15px;
 }
 
-#new-message-link-off{
+#new-message-link-off {
     color: steelblue;
     /*background-color: #f1f1f1;*/
     border-radius: 15px;
 }
 
 /*сделать нажатую кнопку*/
-#new-message-button-off{
+#new-message-button-off {
     box-shadow: 0 0;
     text-align: center;
     height: 100px;
@@ -81,7 +81,7 @@
     font-size: 150%;
 }
 
-#logout-button{
+#logout-button {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     height: 50px;
@@ -91,23 +91,56 @@
     font-size: 130%;
 }
 
-#logout-link{
+#logout-link {
     text-decoration: none;
     display: block;
     width: 100%;
     height: 100%;
-    /*color: #f1f1f1;*/
     color: #373737;
 }
 
+#profile-button {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 100%;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 15px;
+    font-size: 130%;
+}
 
-#logout-text-container{
+#profile-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #373737;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#profile-picture {
+    height: 100px;
+    width: 100px;
+    border-radius: 25px;
+    background-color: #326081;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+#logout-text-container {
     position: relative;
     top: 22%;
 }
 
-#logout-link:hover{
+#logout-link:hover, #profile-button:hover {
     background-color: #daf0f4;
     color: steelblue;
     border-radius: 15px;
+}
+
+#profile-button-username-container {
+    font-size: 80%;
+    color: #979797;
 }

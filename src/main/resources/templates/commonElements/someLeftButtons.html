@@ -1,12 +1,21 @@
 <div id="some-left-buttons" th:fragment="some-left-buttons">
-  <div id="new-message-button">
-    <a id="new-message-link" th:href="@{../../../newMessagePage/index/id=0}">
-      <div id="new-message-text-container">Новое сообщение</div>
-    </a>
-  </div>
-  <div id="logout-button">
-    <a id="logout-link" th:href="@{../../../logout}">
-      <div id="logout-text-container">Выйти</div>
-    </a>
-  </div>
+    <div id="new-message-button">
+        <a id="new-message-link" th:href="@{../../../newMessagePage/index/id=0}">
+            <div id="new-message-text-container">Новое сообщение</div>
+        </a>
+    </div>
+    <div id="profile-button">
+        <a id="profile-link" th:href="@{../../../profilePage/index}">
+            <div id="profile-picture"></div>
+            <div id="profile-button-name-container" th:text="${infoAboutUser.firstname}+' '+${infoAboutUser.lastname}">
+                Профиль Профиленко
+            </div>
+            <div id="profile-button-username-container" th:text="${infoAboutUser.username}"></div>
+        </a>
+    </div>
+    <div id="logout-button">
+        <a id="logout-link" th:href="@{../../../logout}">
+            <div id="logout-text-container">Выйти</div>
+        </a>
+    </div>
 </div>
