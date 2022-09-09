@@ -25,11 +25,11 @@
         <thead>
         <tr>
             <th style="width: 5%">#</th>
-            <th style="width: 20%">Sender</th>
-            <th style="width: 20%">MessageTheme</th>
-            <th style="width: 25%">MessageContent</th>
-            <th style="width: 15%">ReadStatus</th>
-            <th style="width: 15%">Date</th>
+            <th style="width: 20%" th:text="#{list.header.sender}">Sender</th>
+            <th style="width: 20%" th:text="#{list.header.messageTheme}">MessageTheme</th>
+            <th style="width: 25%" th:text="#{list.header.messageContent}">MessageContent</th>
+            <th style="width: 15%" th:text="#{list.header.readStatus}">ReadStatus</th>
+            <th style="width: 15%" th:text="#{list.header.date}">Date</th>
         </tr>
         </thead>
         <tbody>
@@ -78,11 +78,11 @@
             </td>
             <td style="text-align: center" href="../messagePage/index.html">
                 <div>
-                    <a class="to-message-button" th:text="${message.returnStringReadStatus()}" th:if="${message.readStatus}"
+                    <a class="to-message-button" th:text="#{list.main.read}" th:if="${message.readStatus}"
                        href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">readStatus
                     </a>
-                    <a class="to-message-button-not-read" th:text="${message.returnStringReadStatus()}" th:unless="${message.readStatus}"
+                    <a class="to-message-button-not-read" th:text="#{list.main.notRead}" th:unless="${message.readStatus}"
                        href="../messagePage/index.html"
                        th:href="@{'../messagePage/index/id='+${message.id}}">readStatus
                     </a>

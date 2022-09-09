@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @Controller
@@ -46,16 +47,18 @@ public class UserController {
     }
 
     @PostMapping("/signUpPage/index")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, @ModelAttribute("userMail") Mail userMail) {
-        System.out.println(userForm);
-        userValidator.validate(userForm, bindingResult);
-        mailValidator.validate(userMail, bindingResult);
-        if (bindingResult.hasErrors()) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResultUser, @ModelAttribute("userMail") Mail userMail, BindingResult bindingResultMail) {
+        userMail.setMailAddress(userMail.getMailAddress().concat("@ggm.com"));
+        userValidator.validate(userForm, bindingResultUser);
+        mailValidator.validate(userMail, bindingResultMail);
+        if (bindingResultUser.hasErrors() || bindingResultMail.hasErrors()) {
+            userMail.setMailAddress("");
+//            userMail.setMailAddress(userMail.getMailAddress().substring(0, userMail.getMailAddress().length()-8));//не пашет толком
             return "signUpPage/index";
         }
         userService.create(userForm);
         userMail.setUser(userForm);
-        userMail.setMailAddress(userForm.getUsername().toLowerCase() + "@ggm.com");
+        //userMail.setMailAddress(userForm.getUsername().toLowerCase() + "@ggm.com");
         mailService.create(userMail);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/receivedMessages/index";

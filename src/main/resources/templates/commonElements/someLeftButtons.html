@@ -1,7 +1,7 @@
 <div id="some-left-buttons" th:fragment="some-left-buttons">
     <div id="new-message-button">
         <a id="new-message-link" th:href="@{../../../newMessagePage/index/id=0}">
-            <div id="new-message-text-container">Новое сообщение</div>
+            <div id="new-message-text-container" th:text="#{newMessageButton.text}">Новое сообщение</div>
         </a>
     </div>
     <div id="profile-button">
@@ -15,7 +15,7 @@
     </div>
     <div id="logout-button">
         <a id="logout-link" th:href="@{../../../logout}">
-            <div id="logout-text-container">Выйти</div>
+            <div id="logout-text-container" th:text="#{logOutButton.text}">Выйти</div>
         </a>
     </div>
 </div>

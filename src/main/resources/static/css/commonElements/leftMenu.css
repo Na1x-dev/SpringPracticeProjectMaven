@@ -8,6 +8,7 @@
     border-radius: 15px;
     margin-left: 20px;
     align-self: start;
+    min-width: 250px;
 }
 
 .button {

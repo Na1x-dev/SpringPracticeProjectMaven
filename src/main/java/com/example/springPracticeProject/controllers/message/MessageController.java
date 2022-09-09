@@ -18,7 +18,7 @@ import java.util.*;
 
 @Controller
 public class MessageController {
-    User infoAboutUser;
+    private User infoAboutUser;
     @Autowired
     private MessageService messageService;
     @Autowired

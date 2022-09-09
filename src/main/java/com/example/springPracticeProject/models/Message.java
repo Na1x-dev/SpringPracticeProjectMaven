@@ -66,19 +66,18 @@ public class Message {
 
     public String returnDateOfMessage() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM");
-        Date today = new Date();
+        Calendar calendar = new GregorianCalendar();
+        Date today = calendar.getTime();
         if(messageDate.getYear() != today.getYear()){
             dateFormat = new SimpleDateFormat("d MMMM yyyy");
         }
         String strDate = dateFormat.format(messageDate);
-
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.DAY_OF_MONTH, -1);
-        Date yesterday = calendar.getTime();
-        if (messageDate.getDay() == today.getDay() && messageDate.getMonth() == today.getMonth() && messageDate.getYear() == today.getYear()) {
+        calendar.get(Calendar.DAY_OF_MONTH);
+        if (messageDate.getDay() == calendar.get(Calendar.DAY_OF_MONTH) && messageDate.getMonth() == calendar.get(Calendar.MONTH) && messageDate.getYear() == calendar.get(Calendar.YEAR)) {
             strDate = "Сегодня";
         }
-        if (messageDate.getDay() == yesterday.getDay() && messageDate.getMonth() == yesterday.getMonth() && messageDate.getYear() == yesterday.getYear()) {
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        if (messageDate.getDay() == calendar.get(Calendar.DAY_OF_MONTH) && messageDate.getMonth() == calendar.get(Calendar.MONTH) && messageDate.getYear() == calendar.get(Calendar.YEAR)) {
             strDate = "Вчера";
         }
         return strDate;
