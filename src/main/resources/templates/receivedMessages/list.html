@@ -21,7 +21,8 @@
 
 <body>
 <div id="messages" th:fragment="list">
-    <table class="table">
+    <div id="is-null-text" th:text="#{list.isNullText}" th:if="${receivedMessages.size()==0}">Null</div>
+    <table class="table" th:if="${receivedMessages.size()>0}">
         <thead>
         <tr>
             <th style="width: 5%">#</th>

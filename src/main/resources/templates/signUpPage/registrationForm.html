@@ -8,22 +8,22 @@
                     <input name="username" onkeyup="doubleUsername()" type="text" class="form-control"
                            placeholder="Username" th:placeholder="#{registerForm.placeholderUsername}"
                            autofocus="true" th:field="*{username}">
-                    <span class="has-error" th:if="${#fields.hasErrors('username')}"></span>
-                    <!--                    th:errors="*{username}"-->
+                    <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+
                 </div>
 
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" th:placeholder="#{registerForm.placeholderPassword}" th:field="*{password}">
                     <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                    <!--                    th:errors="*{password}"-->
+
                 </div>
 
                 <div class="form-group">
                     <input type="password" class="form-control"
                            placeholder="Confirm your password" th:placeholder="#{registerForm.placeholderConfirmPassword}" th:field="*{passwordConfirm}">
-                    <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
+                    <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"
                     ></span>
-                    <!--                    th:errors="*{passwordConfirm}"-->
+
                 </div>
             </div>
             <div class="vertical-separator"></div>
@@ -47,21 +47,22 @@
         <div id="email-input-div" class="form-group">
             <input id="email-input" type="text" placeholder="Email" th:placeholder="#{registerForm.placeholderEmail}" class="form-control"
                    th:field="${userMail.mailAddress}">@ggm.com
-            <span class="has-error" th:text="${error}"></span>
+            <span   class="has-error" th:text="${error}"></span>
+<!--            th:if="${bindingResultMail.hasErrors()}"-->
         </div>
 
         <button id="signUp-button" class="btn btn-lg btn-primary btn-block" th:text="#{registerForm.signUpButton}" type="submit">Sign Up</button>
         <div id="or-div" th:text="#{registerForm.betweenButtonText}">or</div>
             <h4 class="text-center"><a id="to-logIn-button" th:href="@{../logInPage/index}" th:text="#{registerForm.toLogInButton}">Log in your account</a></h4>
 
-<!--        <script>-->
-<!--            doubleUsername();-->
-<!--            function doubleUsername() {-->
-<!--                let username = document.getElementById('username').value;-->
-<!--                username = username.toLowerCase();-->
-<!--                document.getElementById('email-input').value = username;-->
-<!--            }-->
-<!--        </script>-->
+        <script>
+            doubleUsername();
+            function doubleUsername() {
+                let username = document.getElementById('username').value;
+                username = username.toLowerCase();
+                document.getElementById('email-input').value = username;
+            }
+        </script>
 
     </form>
 
