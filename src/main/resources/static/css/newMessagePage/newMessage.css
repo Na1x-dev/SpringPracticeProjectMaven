@@ -52,7 +52,8 @@
     margin-top: 30px;
     padding: 8px;
     border: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
+    font-weight: 400;
     color: black;
     background-color: lightblue;
     opacity: 0.4;
