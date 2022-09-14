@@ -16,7 +16,7 @@
 #main {
     display: flex;
     flex-direction: row;
-    font-family: "Montserrat Light", sans-serif;
+    font-family: "Montserrat Light";
 }
 
 .form-signUp-heading{
@@ -42,7 +42,7 @@
     margin-top: 30px;
     padding: 8px;
     border: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
     color: black;
     background-color: lightblue;
     opacity: 0.4;
