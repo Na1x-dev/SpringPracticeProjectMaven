@@ -26,21 +26,26 @@ public class MessageController {
     @Autowired
     private UserService userService;
 
-    public List<Message> reverseList(List<Message> someList) {
-        if (someList == null) {
-            someList = new ArrayList<>();
-        }
-        for (int i = 0; i < someList.size(); i++) {
-            Message someMessage = someList.get(someList.size() - 1);
-            someList.remove(someList.get(someList.size() - 1));
-            someList.add(i, someMessage);
-        }
-        return someList;
-    }
+//    public List<Message> reverseList(List<Message> someList) {
+//        if (someList == null) {
+//            someList = new ArrayList<>();
+//        }
+//        for (int i = 0; i < someList.size(); i++) {
+//            Message someMessage = someList.get(someList.size() - 1);
+//            someList.remove(someList.get(someList.size() - 1));
+//            someList.add(i, someMessage);
+//        }
+//        return someList;
+//    }
 
     public List<Message> sortList(List<Message> someList){
-        Comparator<Message> messageComparator = Comparator.comparing(Message::getMessageDate);
-        someList.sort(messageComparator);
+        System.out.println(someList);
+
+//        System.out.println(Math.toIntExact(someList.get(0).getMessageDate().getTime()-someList.get(1).getMessageDate().getTime()));
+        Comparator <Message> messageComparator = (o1, o2) -> (Math.toIntExact(o1.getMessageDate().getTime() - o2.getMessageDate().getTime()));
+        someList.sort(messageComparator.reversed());
+
+
         return someList;
     }
 
@@ -59,8 +64,10 @@ public class MessageController {
             infoAboutUser = userService.findByUsername(user.getName());
         List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
         List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
-        receivedMessages = sortList(optimizeList(receivedMessages));
-        sendMessages = sortList(optimizeList(sendMessages));
+//        receivedMessages = sortList(optimizeList(receivedMessages));
+//        sendMessages = sortList(optimizeList(sendMessages));
+        receivedMessages = sortList(receivedMessages);
+        sendMessages = sortList(sendMessages);
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
         model.addAttribute("infoAboutUser", infoAboutUser);
@@ -105,7 +112,7 @@ public class MessageController {
         Message currentMessage = messageService.read(id);
         model.addAttribute("currentMessage", currentMessage);
         model.addAttribute("showReplyButton", user.getName().equals(currentMessage.getSendersMail().getUser().getUsername()));
-        model.addAttribute("sameThemeMessages", reverseList(messageService.readMessagesOnTheSameTheme(id)));
+        model.addAttribute("sameThemeMessages", sortList(messageService.readMessagesOnTheSameTheme(id)));
         if (!currentMessage.isReadStatus() && user.getName().equals(currentMessage.getRecipientsMail().getUser().getUsername()))
             messageService.update(currentMessage, currentMessage.getId());
         return "messagePage/index";
