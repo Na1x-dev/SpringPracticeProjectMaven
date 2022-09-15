@@ -59,6 +59,11 @@ public class Message {
     @JoinColumn(name="previous_message_id", referencedColumnName = "id")
     Message previousMessage;
 
+    @Column(name="deleted_from_recipient")
+    Integer deletedFromRecipient;
+
+    @Column(name="deleted_from_sender")
+    Integer deletedFromSender;
 
 //    @Column(name="response_message_id")
 //    Long responseMessageId;

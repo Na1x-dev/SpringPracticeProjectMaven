@@ -2,6 +2,7 @@ package com.example.springPracticeProject.controllers.user;
 
 import com.example.springPracticeProject.controllers.mail.MailValidator;
 import com.example.springPracticeProject.models.Mail;
+import com.example.springPracticeProject.models.Message;
 import com.example.springPracticeProject.models.User;
 import com.example.springPracticeProject.services.mail.MailService;
 import com.example.springPracticeProject.services.message.MessageService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -66,6 +68,8 @@ public class UserController {
 
     @GetMapping("/logInPage/index")
     public String login(Model model, String error, String logout) {
+        List<Message> messageList = messageService.readAll();
+        initializeDeleteVariable(messageList);
         if (securityService.isAuthenticated()) {
             return "redirect:/";
         }
@@ -86,6 +90,17 @@ public class UserController {
     }
 
 
+    public void initializeDeleteVariable(List<Message> messageList){
+        for(Message message : messageList){
+            if(message.getDeletedFromSender() == null){
+                message.setDeletedFromSender(0);
+            }
+            if(message.getDeletedFromRecipient() == null){
+                message.setDeletedFromRecipient(0);
+            }
+            messageService.update(message, message.getId());
+        }
+    }
 
 
 }

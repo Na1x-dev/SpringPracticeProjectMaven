@@ -38,6 +38,12 @@ public class MessageController {
         return someList;
     }
 
+    public List<Message> sortList(List<Message> someList){
+        Comparator<Message> messageComparator = Comparator.comparing(Message::getMessageDate);
+        someList.sort(messageComparator);
+        return someList;
+    }
+
     public List<Message> optimizeList(List<Message> someList) {
         List<Message> optimizedList = new ArrayList<>();
         for (Message message : someList) {
@@ -53,13 +59,15 @@ public class MessageController {
             infoAboutUser = userService.findByUsername(user.getName());
         List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
         List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
-        receivedMessages = optimizeList(reverseList(receivedMessages));
-        sendMessages = optimizeList(reverseList(sendMessages));
+        receivedMessages = sortList(optimizeList(receivedMessages));
+        sendMessages = sortList(optimizeList(sendMessages));
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
         model.addAttribute("infoAboutUser", infoAboutUser);
         model.addAttribute("messagePageLink", "../messagePage/index/id=$message.id.toString()");
     }
+
+
 
     @GetMapping(value = "profilePage/index")
     public String profilePage(Model model, Principal user) {

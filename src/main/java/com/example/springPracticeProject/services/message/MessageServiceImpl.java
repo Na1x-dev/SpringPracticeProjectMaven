@@ -83,4 +83,10 @@ public class MessageServiceImpl implements MessageService {
         }
         return someMessages;
     }
+
+
+    @Override
+    public List<Message> readAll() {
+        return messageRepository.findAll();
+    }
 }

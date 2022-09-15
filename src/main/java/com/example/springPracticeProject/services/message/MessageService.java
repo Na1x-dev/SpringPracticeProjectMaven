@@ -14,6 +14,8 @@ public interface MessageService {
     List<Message> readReceivedMessages(Long mailId);
     Message read(Long id);
 
+    List<Message> readAll();
+
     boolean update(Message message, Long id);
 
     boolean delete(Long id);
