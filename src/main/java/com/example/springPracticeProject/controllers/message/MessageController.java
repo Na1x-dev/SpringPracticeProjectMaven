@@ -39,7 +39,6 @@ public class MessageController {
 //    }
 
     public List<Message> sortList(List<Message> someList){
-        System.out.println(someList);
 
 //        System.out.println(Math.toIntExact(someList.get(0).getMessageDate().getTime()-someList.get(1).getMessageDate().getTime()));
         Comparator <Message> messageComparator = (o1, o2) -> (Math.toIntExact(o1.getMessageDate().getTime() - o2.getMessageDate().getTime()));
@@ -60,14 +59,12 @@ public class MessageController {
     }
 
     private void addAttributes(Model model, Principal user) {
-        if (infoAboutUser == null)
+        if (infoAboutUser == null || !user.getName().equals(infoAboutUser.getUsername()))
             infoAboutUser = userService.findByUsername(user.getName());
         List<Message> receivedMessages = messageService.readReceivedMessages(userService.getUserMailId(user.getName()));
         List<Message> sendMessages = messageService.readSendMessages(userService.getUserMailId(user.getName()));
-//        receivedMessages = sortList(optimizeList(receivedMessages));
-//        sendMessages = sortList(optimizeList(sendMessages));
-        receivedMessages = sortList(receivedMessages);
-        sendMessages = sortList(sendMessages);
+        receivedMessages = sortList(optimizeList(receivedMessages));
+        sendMessages = sortList(optimizeList(sendMessages));
         model.addAttribute("receivedMessages", receivedMessages);
         model.addAttribute("sendMessages", sendMessages);
         model.addAttribute("infoAboutUser", infoAboutUser);
@@ -106,6 +103,12 @@ public class MessageController {
         return "favoriteMessages/index";
     }
 
+    @GetMapping(value = MessageEndpoints.trashMessagesPage)
+    public String trashMessages(Model model, Principal user) {
+        addAttributes(model, user);
+        return "trashMessages/index";
+    }
+
     @GetMapping(value = MessageEndpoints.messagePageEnd) //наверное нельзя делать update в методе get
     public String messagePage(Model model, Principal user, @PathVariable(name = "id") Long id) {
         addAttributes(model, user);
@@ -138,7 +141,6 @@ public class MessageController {
         addAttributes(model, user);
         Message currentMessage = new Message();
         Mail recipientsMail = new Mail();
-
         if (previousMessageId != 0) {
             Message previousMessage = messageService.read(previousMessageId);
             model.addAttribute("currentMessageMailAddress", previousMessage.getSendersMail().getMailAddress());

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GGMail</title>
+    <link rel="stylesheet" href="../../static/css/commonElements/header.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/header.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/footer.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/footer.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/logo.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/logo.css}">
+    <link rel="stylesheet" href="../../static/css/trashMessages/main.css" th:rel="stylesheet"
+          th:href="@{/css/trashMessages/main.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/list.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/list.css}">
+    <link rel="stylesheet" href="../../static/css/commonElements/leftMenu.css" th:rel="stylesheet"
+          th:href="@{/css/commonElements/leftMenu.css}">
+
+</head>
+
+<body>
+<div id="messages" th:fragment="list">
+<!--    <div id="is-null-text" th:text="#{list.isNullText}" th:if="${receivedMessages.size()==0}">Null</div>-->
+    <table class="table" >
+        <thead>
+        <tr>
+            <th style="width: 5%">#</th>
+            <th style="width: 20%" th:text="#{list.header.sender}">Sender</th>
+            <th style="width: 20%" th:text="#{list.header.messageTheme}">MessageTheme</th>
+            <th style="width: 25%" th:text="#{list.header.messageContent}">MessageContent</th>
+            <th style="width: 15%" th:text="#{list.header.readStatus}">ReadStatus</th>
+            <th style="width: 15%" th:text="#{list.header.date}">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+<!--        <tr th:each="message : ${receivedMessages}" class="table-row">-->
+<!--            <td style="text-align: center">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button" th:text="${receivedMessages.indexOf(message)+1}" th:if="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}">1-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-not-read" th:text="${receivedMessages.indexOf(message)+1}" th:unless="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html" th:href="@{'../messagePage/index/id='+${message.id}}">1-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button" th:text="${message.sendersMail.user.username}" th:if="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">username-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-not-read" th:text="${message.sendersMail.user.username}" th:unless="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">username-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button" th:text="${message.messageTheme}" href="../messagePage/index.html" th:if="${message.readStatus}"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">messageTheme-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-not-read" th:text="${message.messageTheme}" href="../messagePage/index.html" th:unless="${message.readStatus}"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">messageTheme-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: start">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button" th:text="${message.messageContent}" href="../messagePage/index.html" th:if="${message.readStatus}"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">messageContent-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-not-read" th:text="${message.messageContent}" href="../messagePage/index.html"  th:unless="${message.readStatus}"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">messageContent-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center" href="../messagePage/index.html">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button" th:text="#{list.main.read}" th:if="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">readStatus-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-not-read" th:text="#{list.main.notRead}" th:unless="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">readStatus-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center" href="../messagePage/index.html">-->
+<!--                <div>-->
+<!--                    <a class="to-message-button-end" th:text="${message.returnDateOfMessage()}" th:if="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">date-->
+<!--                    </a>-->
+<!--                    <a class="to-message-button-end-not-read" th:text="${message.returnDateOfMessage()}" th:unless="${message.readStatus}"-->
+<!--                       href="../messagePage/index.html"-->
+<!--                       th:href="@{'../messagePage/index/id='+${message.id}}">date-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

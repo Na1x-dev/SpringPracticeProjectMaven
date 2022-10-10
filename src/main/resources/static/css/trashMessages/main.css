@@ -1,0 +1,22 @@
+#main {
+    display: flex;
+    flex-direction: row;
+    font-family: "Montserrat";
+    font-weight: 300;
+
+}
+
+/*цвет выбранного раздела в левом меню*/
+
+#trash-messages-button{
+    /*background-color: #daf0f4;*/
+    /*padding: 10px;*/
+    /*color: lightcoral;*/
+    color: steelblue;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+
+
+
